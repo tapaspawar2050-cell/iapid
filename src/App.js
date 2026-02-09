@@ -4,6 +4,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 
+
 // Import other pages as you create them
 // import AboutPage from './pages/AboutPage';
 // import Membership from './pages/Membership';

@@ -1,40 +1,65 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
+import heroVideo from "../assets/hero.mp4";
+import heroImg from "../assets/hero.png";
+
 
 const Hero = () => {
   return (
-    <section className="relative bg-gradient-to-r from-blue-900 to-purple-900 h-[500px] md:h-[600px] flex items-center">
-      {/* Background Image Overlay */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center opacity-40"
-        style={{ backgroundImage: "url('/images/hero-image.jpg')" }}
-      ></div>
-      
+    <section className="relative h-[520px] md:h-[620px] overflow-hidden">
+
+      {/* Desktop Video */}
+<video
+  className="hidden md:block absolute top-0 left-0 w-full h-full object-cover"
+  src={heroVideo}
+  autoPlay
+  loop
+  muted
+  playsInline
+/>
+
+{/* Mobile Image */}
+<div
+  className="block md:hidden absolute inset-0 bg-cover bg-center"
+  style={{ backgroundImage: `url(${heroImg})` }}
+></div>
+
+
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/40"></div> */
+
+
       {/* Content */}
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-2xl">
-          <h1 className="text-white text-4xl md:text-6xl font-bold mb-4 leading-tight">
+      <div className="relative z-10 container mx-auto px-6 h-full flex items-center">
+        <div className="max-w-xl">
+          <h1 className="text-white text-4xl md:text-6xl font-bold leading-tight">
             The International Academy of Pathology
           </h1>
-          <p className="text-white text-xl md:text-2xl mb-2">Indian Division</p>
-          <p className="text-white text-lg md:text-xl mb-8">A World Wide Organization</p>
-          
-          <Link 
-            to="/membership" 
-            className="inline-flex items-center bg-iap-orange text-white px-8 py-3 rounded-full font-semibold hover:bg-orange-600 transition shadow-lg"
+
+          <p className="text-white text-2xl mt-3">Indian Division</p>
+          <p className="text-white text-xl mb-6">A World Wide Organization</p>
+
+          <Link
+            to="/membership"
+            className="bg-[#F7931E] text-white px-7 py-3 rounded-full font-semibold hover:bg-orange-600 transition"
           >
-            Membership
-            <span className="ml-2">→</span>
+            Membership →
           </Link>
         </div>
       </div>
 
       {/* Latest News Box */}
       <div className="absolute bottom-8 right-8 hidden md:block">
-        <div className="bg-iap-orange text-white px-6 py-3 rounded-lg shadow-lg">
-          <h3 className="font-bold text-lg">Latest News</h3>
+        <div className="bg-[#F7931E] text-black rounded-xl shadow-lg w-[260px]">
+          <div className="bg-[#F7931E] text-center font-semibold py-3 rounded-t-xl">
+            Latest News
+          </div>
+          <div className="bg-gray-800 text-white p-4 rounded-b-xl">
+            <p className="text-sm">XXVIIth Annual CME Program announced</p>
+          </div>
         </div>
       </div>
+
     </section>
   );
 };
