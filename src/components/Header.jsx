@@ -1,66 +1,52 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FaFacebookF, FaTwitter, FaGoogle } from "react-icons/fa";
 import logo from "../assets/logo.png";
+import { FaFacebookF, FaTwitter, FaGoogle, FaEnvelope } from "react-icons/fa";
 
 const Header = () => {
   return (
-    <header className="w-full sticky top-0 z-50">
+    <header className="w-full">
 
-      {/* 🔶 TOP BAR */}
-      <div className="bg-[#F7931E]">
-        <div className="max-w-[1400px] mx-auto px-6 py-3 flex justify-between items-center">
+      {/* WHITE TOP STRIP */}
+      <div className="bg-white py-2">
+        <div className="max-w-7xl mx-auto flex justify-end items-center space-x-4 pr-6">
+          <FaFacebookF className="text-gray-600 cursor-pointer" />
+          <FaTwitter className="text-gray-600 cursor-pointer" />
+          <FaGoogle className="text-gray-600 cursor-pointer" />
+        </div>
+      </div>
 
-          {/* LOGO */}
-          <div className="flex items-center gap-4">
-            <img
-              src={logo}
-              alt="IAP-ID"
-              className="h-14 w-14 object-contain"
-            />
+      {/* ORANGE BAR */}
+      <div className="bg-[#F7931E] py-3">
+        <div className="max-w-7xl mx-auto flex items-center justify-between px-4">
 
-            <div className="leading-tight">
-              <h1 className="text-black font-bold text-2xl">IAP-ID</h1>
-              <p className="text-black text-xs">
-                INTERNATIONAL ACADEMY OF PATHOLOGY <br />
-                INDIAN DIVISION
-              </p>
+          <div className="flex items-center space-x-3">
+            <img src={logo} alt="logo" className="h-14" />
+            <div>
+              <h1 className="text-2xl font-bold">IAP-ID</h1>
+              <p className="text-sm">INTERNATIONAL ACADEMY OF PATHOLOGY - INDIAN DIVISION</p>
             </div>
           </div>
 
-          {/* RIGHT ICONS */}
-          <div className="hidden md:flex items-center gap-6 text-black text-sm ml-auto">
-  
-  <span className="flex items-center gap-2">
-    ✉ secretary.iapid25@gmail.com
-  </span>
-
-  <div className="flex items-center gap-4 text-lg">
-    <FaFacebookF className="cursor-pointer" />
-    <FaTwitter className="cursor-pointer" />
-    <FaGoogle className="cursor-pointer" />
-  </div>
-
-</div>
+          <div className="flex items-center space-x-2">
+            <FaEnvelope />
+            <span className="font-semibold">secretary.iapid25@gmail.com</span>
+          </div>
 
         </div>
       </div>
 
-      {/* 🔹 MENU */}
-      <div className="bg-[#f2f2f2] border-b-4 border-[#2E1A47]">
-        <div className="max-w-[1400px] mx-auto px-6">
-          <ul className="flex flex-wrap gap-6 py-3 text-sm font-medium text-black">
-            <li><Link to="/about">About IAPID</Link></li>
-            <li><Link to="/newsletter">Newsletter</Link></li>
-            <li><Link to="/membership">Membership</Link></li>
-            <li><Link to="/conference">Conference/CME</Link></li>
-            <li><Link to="/gallery">Gallery</Link></li>
-            <li><Link to="/ap-iap-2025">AP-IAP 2025</Link></li>
-            <li><Link to="/bulletin">IAP Bulletin</Link></li>
-            <li><Link to="/academic">IAP-ID Academic program 2026</Link></li>
-          </ul>
+      {/* MENU BAR */}
+      <nav className="bg-gray-200 py-3">
+        <div className="max-w-7xl mx-auto flex justify-center space-x-8 font-semibold">
+          <Link to="/">About IAPID</Link>
+          <Link to="/newsletter">Newsletter</Link>
+          <Link to="/membership">Membership</Link>
+          <Link to="/conference">Conference/CME</Link>
+          <Link to="/gallery">Gallery</Link>
+          <Link to="/program">IAP-ID Academic Program 2026</Link>
         </div>
-      </div>
+      </nav>
 
     </header>
   );

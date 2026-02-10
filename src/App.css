@@ -36,3 +36,37 @@
     transform: rotate(360deg);
   }
 }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #F7931E;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #d67d1a;
+}
+
+/* Conference Slider Center Effect */
+.slick-slide {
+  transform: scale(0.85);
+  transition: all 0.35s ease;
+  opacity: 0.6;
+}
+
+.slick-center {
+  transform: scale(1);
+  opacity: 1;
+}

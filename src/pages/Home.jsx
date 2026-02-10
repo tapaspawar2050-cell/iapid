@@ -2,10 +2,9 @@ import React from "react";
 import Hero from "../components/Hero";
 import About from "../components/About";
 import Programs from "../components/Programs";
+import AcademicPrograms from "../components/AcademicPrograms"; 
 import AnnualConference from "../components/AnnualConference";
 import Gallery from "../components/Gallery";
-import ConferenceCarousel from "../components/ConferenceCarousel";
-
 
 const Home = () => {
   return (
@@ -13,8 +12,8 @@ const Home = () => {
       <Hero />
       <About />
       <Programs />
+      <AcademicPrograms /> 
       <AnnualConference />
-        <ConferenceCarousel />
       <Gallery />
     </main>
   );
