@@ -48,18 +48,6 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Latest News Box */}
-      <div className="absolute bottom-8 right-8 hidden md:block">
-        <div className="bg-[#F7931E] text-black rounded-xl shadow-lg w-[260px]">
-          <div className="bg-[#F7931E] text-center font-semibold py-3 rounded-t-xl">
-            Latest News
-          </div>
-          <div className="bg-gray-800 text-white p-4 rounded-b-xl">
-            <p className="text-sm">XXVIIth Annual CME Program announced</p>
-          </div>
-        </div>
-      </div>
-
     </section>
   );
 };

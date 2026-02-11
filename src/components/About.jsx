@@ -1,84 +1,84 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
 
-const About = () => {
-  const newsItems = [
-    {
-      title: "XXVIIth Annual CME of the International Academy of Pathology-Indian Division",
-      badge: "NEW"
-    },
-    {
-      title: "Dr Surabhi Jain, AIIIMS New Delhi.",
-      badge: "NEW"
-    },
-    {
-      title: "Mid-year Teaching Program: 6-7 th April 2025",
-      badge: "NEW"
-    },
-    {
-      title: "IAPID mid year teaching program-Chandigarh on Autopsy Pathology. 6th and 7th April 2025.",
-      badge: "NEW"
-    }
-  ];
-
+const AboutSection = () => {
   return (
-    <section className="py-16 bg-gray-50">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          {/* About Section */}
+    <section className="bg-[#dcdcdc] py-20">
+      <div className="max-w-7xl mx-auto px-10">
+
+        {/* GRID WITH FIXED RIGHT WIDTH */}
+        <div className="grid md:grid-cols-[1fr_400px] gap-16 items-start">
+
+          {/* LEFT SIDE ABOUT TEXT */}
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-800">
+            <h2 className="text-5xl font-serif font-bold mb-8 text-black">
               About IAP-ID
             </h2>
-            
-            <div className="prose max-w-none">
-              <p className="text-gray-700 leading-relaxed mb-4">
-                A very warm welcome to the website of the International Academy of Pathology - Indian Division (IAP-ID). 
-                The IAP-ID was started in the late 1960's with a few select members and from this small beginning it has 
-                grown tremendously in all aspects of its operations, especially so in the last few years.
-              </p>
-              
-              <p className="text-gray-700 leading-relaxed mb-4">
-                The IAP-ID is one of the most active and dynamic Divisions of the International Academy of Pathology and 
-                has attracted a large membership and evoked lot of interest from Pathologists, both from India and abroad, 
-                due to its active academic and scientific programs.
-              </p>
-              
-              <Link 
-                to="/about" 
-                className="text-iap-orange font-semibold hover:underline inline-block mt-4"
-              >
-                Read More &gt;&gt;
-              </Link>
+
+            <p className="text-lg font-serif leading-8 mb-6 text-black">
+              A very warm welcome to the website of the International Academy of
+              Pathology - Indian Division (IAP-ID). The IAP-ID was started in the
+              late 1960's with a few select members and from this small beginning
+              it has grown tremendously in all aspects of its operations,
+              especially so in the last few years.
+            </p>
+
+            <p className="text-lg font-serif leading-8 mb-6 text-black">
+              The IAP-ID is one of the most active and dynamic Divisions of the
+              International Academy of Pathology and has attracted a large
+              membership and evoked lot of interest from Pathologists, both from
+              India and abroad, due to its active academic and scientific programs.
+            </p>
+
+            <a
+              href="#"
+              className="text-orange-500 font-semibold text-lg"
+            >
+              Read More &gt;&gt;
+            </a>
+          </div>
+
+          {/* RIGHT SIDE SMALL LATEST NEWS CARD */}
+          <div className="bg-[#4b4343] rounded-2xl overflow-hidden shadow-lg h-fit">
+
+            {/* Orange Header */}
+            <div className="bg-[#f4a000] text-center py-4">
+              <h3 className="text-2xl font-serif font-bold text-black">
+                Latest New
+              </h3>
+            </div>
+
+            {/* News Items */}
+            <div className="p-6 space-y-8 text-white font-serif text-base">
+
+              <div className="border-l-2 border-gray-300 pl-4">
+                XXVIIth Annual CME of the International Academy of
+                Pathology-Indian Division
+                <span className="ml-2 text-red-500 font-bold"> NEW</span>
+              </div>
+
+              <div className="border-l-2 border-gray-300 pl-4">
+                Dr Surabhi Jain. AIIMS New Delhi.
+                <span className="ml-2 text-red-500 font-bold"> NEW</span>
+              </div>
+
+              <div className="border-l-2 border-gray-300 pl-4">
+                Mid-year Teaching Program: 6-7 th April 2025
+                <span className="ml-2 text-red-500 font-bold"> NEW</span>
+              </div>
+
+              <div className="border-l-2 border-gray-300 pl-4">
+                IAPID mid year teaching program- Chandigarh on Autopsy
+                Pathology. 6th and 7th April 2025.
+                <span className="ml-2 text-red-500 font-bold"> NEW</span>
+              </div>
+
             </div>
           </div>
 
-          {/* Latest News Section */}
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <h3 className="text-2xl font-bold mb-6 text-gray-800 border-b pb-3">
-              Latest News
-            </h3>
-            
-            <div className="space-y-4">
-              {newsItems.map((item, index) => (
-                <div 
-                  key={index} 
-                  className="border-l-4 border-iap-orange pl-4 py-2 hover:bg-gray-50 transition"
-                >
-                  <div className="flex items-start justify-between">
-                    <p className="text-gray-700 text-sm">{item.title}</p>
-                    <span className="bg-red-500 text-white text-xs px-2 py-1 rounded ml-2 flex-shrink-0">
-                      {item.badge}
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
       </div>
     </section>
   );
 };
 
-export default About;
+export default AboutSection;

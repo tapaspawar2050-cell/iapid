@@ -1,78 +1,122 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
-import conf1 from "../assets/conf1.jpg";
-import conf2 from "../assets/conf2.jpg";
-import conf3 from "../assets/conf3.jpg";
-import conf4 from "../assets/conf4.jpg";
-import conf5 from "../assets/conf5.jpg";
+import img1 from "../assets/conf1.jpg";
+import img2 from "../assets/conf2.jpg";
+import img3 from "../assets/conf3.jpg";
 
-const conferences = [
-  { title: "IAPID Annual CME 2025", image: conf1 },
-  { title: "MYTP - 2024", image: conf2 },
-  { title: "Annual Conference 2024", image: conf3 },
-  { title: "Conference 2023", image: conf4 },
-  { title: "Conference 2022", image: conf5 },
+import img4 from "../assets/conf4.jpg";
+import img5 from "../assets/conf5.jpg";
+import img6 from "../assets/conf6.jpg";
+
+import img7 from "../assets/conf7.jpg";
+import img8 from "../assets/conf8.jpg";
+import img9 from "../assets/conf9.jpg";
+
+const conferenceData = [
+  {
+    title: "MYTP - 2024",
+    images: [img1, img2, img3],
+  },
+  {
+    title: "Annual Conference of IAP-ID 2024",
+    images: [img4, img5, img6],
+  },
+  {
+    title: "APCON - IAPID 2025",
+    images: [img7, img8, img9],
+  },
 ];
 
-export default function AnnualConference() {
+
+// ✅ Conference Card Component
+const ConferenceCard = ({ title, images }) => {
   const [index, setIndex] = useState(0);
 
-  const nextSlide = () => {
-    if (index < conferences.length - 3) {
-      setIndex(index + 1);
-    }
-  };
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prev) =>
+        prev === images.length - 1 ? 0 : prev + 1
+      );
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [images.length]);
 
   const prevSlide = () => {
-    if (index > 0) {
-      setIndex(index - 1);
-    }
+    setIndex((prev) =>
+      prev === 0 ? images.length - 1 : prev - 1
+    );
+  };
+
+  const nextSlide = () => {
+    setIndex((prev) =>
+      prev === images.length - 1 ? 0 : prev + 1
+    );
   };
 
   return (
-    <div className="py-16 bg-gray-100 relative">
-      <h2 className="text-3xl font-bold text-center mb-10">
-        Annual Conference
-      </h2>
+    <div className="bg-white rounded-2xl shadow-xl 
+                    w-[320px] h-[480px] 
+                    mx-auto overflow-hidden flex flex-col">
 
-      {/* slider */}
-      <div className="relative max-w-6xl mx-auto overflow-hidden">
+      {/* Title */}
+      <div className="bg-[#4A4444] text-white text-center py-4 font-semibold text-lg">
+        {title}
+      </div>
 
-        <div
-          className="flex transition-transform duration-500"
-          style={{ transform: `translateX(-${index * 33.333}%)` }}
-        >
-          {conferences.map((item, i) => (
-            <div key={i} className="w-1/3 px-4 flex-shrink-0">
-              <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-                <div className="bg-slate-600 text-white text-center py-3 font-semibold">
-                  {item.title}
-                </div>
-                <img
-                  src={item.image}
-                  alt=""
-                  className="w-full h-72 object-cover"
-                />
-              </div>
-            </div>
-          ))}
+      {/* Image Section */}
+      <div className="relative flex-1 p-4">
+        <div className="relative w-full h-full rounded-xl overflow-hidden">
+          <img
+            src={images[index]}
+            alt={title}
+            className="w-full h-full object-cover transition-all duration-500"
+          />
+
+          {/* Left Arrow */}
+          <button
+            onClick={prevSlide}
+            className="absolute left-3 top-1/2 -translate-y-1/2 
+                       bg-white p-2 rounded-full shadow-md"
+          >
+            <FaChevronLeft />
+          </button>
+
+          {/* Right Arrow */}
+          <button
+            onClick={nextSlide}
+            className="absolute right-3 top-1/2 -translate-y-1/2 
+                       bg-white p-2 rounded-full shadow-md"
+          >
+            <FaChevronRight />
+          </button>
         </div>
-
-        {/* arrows */}
-        <button
-          onClick={prevSlide}
-          className="absolute left-0 top-1/2 -translate-y-1/2 bg-white shadow px-3 py-2"
-        >
-          ❮
-        </button>
-
-        <button
-          onClick={nextSlide}
-          className="absolute right-0 top-1/2 -translate-y-1/2 bg-white shadow px-3 py-2"
-        >
-          ❯
-        </button>
       </div>
     </div>
   );
-}
+};
+
+
+// ✅ Main Section
+const AnnualConference = () => {
+  return (
+    <section className="py-20 bg-[#dcdcdc]">
+      <h2 className="text-4xl font-serif font-bold text-center mb-14">
+        Annual Conference
+      </h2>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-12 px-6 md:px-16">
+        {conferenceData.map((item, index) => (
+          <ConferenceCard
+            key={index}
+            title={item.title}
+            images={item.images}
+          />
+        ))}
+      </div>
+    </section>
+  );
+};
+
+export default AnnualConference;
