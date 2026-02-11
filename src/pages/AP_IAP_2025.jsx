@@ -1,5 +1,5 @@
 import React from "react";
-import apIapPoster from "../assets/AP-IAP 2025.png"; // 👈 add poster image inside assets
+import apiapImg from "../assets/ap-iap-2025.png";
 
 const APIAP2025 = () => {
   return (
@@ -11,7 +11,7 @@ const APIAP2025 = () => {
           {/* LEFT POSTER */}
           <div>
             <img
-              src={apIapPoster}
+              src={apiapImg}
               alt="AP-IAP 2025"
               className="rounded-xl shadow-lg"
             />
