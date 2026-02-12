@@ -1,75 +1,118 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
-import img1 from "../assets/iapid-cme-2025.jpg";
-import img2 from "../assets/apcon-2025.jpg";
-import img3 from "../assets/annual-conf-2024.jpg";
-import img4 from "../assets/mytp-2024.jpg";
+import g1 from "../assets/gallery_1.jpg";
+import g2 from "../assets/gallery_2.jpg";
+import g3 from "../assets/gallery_3.jpg";
+import g4 from "../assets/gallery_4.jpg";
+
+const images = [g1, g2, g3, g4];
 
 const Gallery = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [itemsToShow, setItemsToShow] = useState(4);
+
+  // 🔹 Responsive images count
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 640) {
+        setItemsToShow(1);
+      } else if (window.innerWidth < 1024) {
+        setItemsToShow(2);
+      } else {
+        setItemsToShow(4);
+      }
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // 🔹 Auto Slide
+  useEffect(() => {
+    const interval = setInterval(() => {
+      nextSlide();
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [currentIndex, itemsToShow]);
+
+  // 🔹 Infinite Next
+  const nextSlide = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex + 1 >= images.length ? 0 : prevIndex + 1
+    );
+  };
+
+  // 🔹 Infinite Prev
+  const prevSlide = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex - 1 < 0 ? images.length - 1 : prevIndex - 1
+    );
+  };
+
   return (
-    <section className="bg-[#dcdcdc] py-20 font-serif text-black min-h-screen">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="bg-[#dcdcdc] py-20">
+      <div className="max-w-[1400px] mx-auto px-6">
 
-        {/* HEADING */}
-        <h1 className="text-4xl md:text-5xl font-bold text-center mb-16 leading-snug">
-          The IAP-ID is one of the most active and dynamic Divisions of the
-          <br />
-          International Academy of Pathology
-        </h1>
-
-        {/* IMAGE GRID */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-
-          {/* CARD 1 */}
-          <div className="text-center">
-            <img
-              src={img1}
-              alt="IAPID Annual CME 2025"
-              className="rounded-2xl shadow-xl w-full h-64 object-cover"
-            />
-            <h3 className="mt-4 text-xl font-semibold">
-              IAPID Annual CME 2025 at Amrita Kochi
-            </h3>
-          </div>
-
-          {/* CARD 2 */}
-          <div className="text-center">
-            <img
-              src={img2}
-              alt="APCON IAPID 2025"
-              className="rounded-2xl shadow-xl w-full h-64 object-cover"
-            />
-            <h3 className="mt-4 text-xl font-semibold">
-              APCON - IAPID 2025
-            </h3>
-          </div>
-
-          {/* CARD 3 */}
-          <div className="text-center">
-            <img
-              src={img3}
-              alt="Annual Conference IAP-ID 2024"
-              className="rounded-2xl shadow-xl w-full h-64 object-cover"
-            />
-            <h3 className="mt-4 text-xl font-semibold">
-              Annual Conference of IAP-ID 2024
-            </h3>
-          </div>
-
-          {/* CARD 4 */}
-          <div className="text-center">
-            <img
-              src={img4}
-              alt="MYTP 2024"
-              className="rounded-2xl shadow-xl w-full h-64 object-cover"
-            />
-            <h3 className="mt-4 text-xl font-semibold">
-              MYTP - 2024
-            </h3>
-          </div>
-
+        {/* Heading */}
+        <div className="text-center mb-12">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-800">
+            See Our Latest Academic Moments
+          </h2>
+          <div className="w-24 h-1 bg-gray-700 mx-auto mt-4 rounded-full"></div>
         </div>
 
+        <div className="relative overflow-hidden">
+
+          {/* Slider Track */}
+          <div
+            className="flex transition-transform duration-700 ease-in-out"
+            style={{
+              transform: `translateX(-${
+                (currentIndex * 100) / itemsToShow
+              }%)`,
+            }}
+          >
+            {images.concat(images).map((img, index) => (
+              <div
+                key={index}
+                className={`
+                  flex-shrink-0 px-3
+                  ${itemsToShow === 1 ? "w-full" : ""}
+                  ${itemsToShow === 2 ? "w-1/2" : ""}
+                  ${itemsToShow === 4 ? "w-1/4" : ""}
+                `}
+              >
+                <div className="bg-white rounded-lg shadow-md overflow-hidden transition duration-500">
+                  <img
+                    src={img}
+                    alt="gallery"
+                    className="h-[320px] w-full object-cover"
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Left Arrow */}
+          <button
+            onClick={prevSlide}
+            className="absolute top-1/2 left-3 -translate-y-1/2 bg-white p-3 rounded-full shadow-md hover:bg-gray-800 hover:text-white transition"
+          >
+            <FaChevronLeft />
+          </button>
+
+          {/* Right Arrow */}
+          <button
+            onClick={nextSlide}
+            className="absolute top-1/2 right-3 -translate-y-1/2 bg-white p-3 rounded-full shadow-md hover:bg-gray-800 hover:text-white transition"
+          >
+            <FaChevronRight />
+          </button>
+
+        </div>
       </div>
     </section>
   );

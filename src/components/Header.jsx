@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
+
 import {
   FaFacebookF,
   FaTwitter,
@@ -69,47 +70,71 @@ const Header = () => {
         
         {/* DESKTOP MENU */}
         <div className="hidden md:flex max-w-7xl mx-auto justify-center space-x-8 py-3 font-semibold">
+          
           <Link to="/about" className="hover:text-[#F7931E]">
             About IAPID
           </Link>
+
           <Link to="/newsletter" className="hover:text-[#F7931E]">
             Newsletter
           </Link>
+
           <Link to="/membership" className="hover:text-[#F7931E]">
             Membership
           </Link>
+
           <Link to="/conference" className="hover:text-[#F7931E]">
             Conference/CME
           </Link>
+
           <Link to="/gallery" className="hover:text-[#F7931E]">
             Gallery
           </Link>
+
+          {/* ✅ NEW ADDED LINK */}
+          <Link to="/ap-iap-2025" className="hover:text-[#F7931E] font-bold">
+            AP-IAP 2025
+          </Link>
+
           <Link to="/program" className="hover:text-[#F7931E]">
             Academic Program 2026
           </Link>
+
         </div>
 
         {/* 📱 MOBILE MENU */}
         {menuOpen && (
           <div className="md:hidden flex flex-col bg-gray-100 px-6 py-4 space-y-4 font-semibold">
+            
             <Link to="/about" onClick={() => setMenuOpen(false)}>
               About IAPID
             </Link>
+
             <Link to="/newsletter" onClick={() => setMenuOpen(false)}>
               Newsletter
             </Link>
+
             <Link to="/membership" onClick={() => setMenuOpen(false)}>
               Membership
             </Link>
+
             <Link to="/conference" onClick={() => setMenuOpen(false)}>
               Conference/CME
             </Link>
+
             <Link to="/gallery" onClick={() => setMenuOpen(false)}>
               Gallery
             </Link>
+
+            {/* ✅ NEW MOBILE LINK */}
+            <Link to="/ap-iap-2025" onClick={() => setMenuOpen(false)}>
+              AP-IAP 2025
+            </Link>
+
             <Link to="/program" onClick={() => setMenuOpen(false)}>
               Academic Program 2026
             </Link>
+
           </div>
         )}
       </nav>
