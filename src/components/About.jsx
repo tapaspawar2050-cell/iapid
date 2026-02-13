@@ -1,128 +1,102 @@
-// Import React
-import React from "react";
+// React import kar rahe hain
+import React, { useEffect, useRef } from "react";
 
-// Create AboutSection component
+// AboutSection component banaya
 const AboutSection = () => {
+
+  // useRef slider ko control karne ke liye
+  const sliderRef = useRef(null);
+
+  // useEffect automatic slider chalane ke liye
+  useEffect(() => {
+    const slider = sliderRef.current; // slider ko access kar rahe hain
+    let scrollAmount = 0; // scroll kitna hua track karne ke liye
+
+    const slide = () => {
+      if (!slider) return;
+
+      scrollAmount += 1; // har baar thoda upar scroll karega
+
+      // Jab half scroll ho jaye to phir se start kare
+      if (scrollAmount >= slider.scrollHeight / 2) {
+        scrollAmount = 0;
+      }
+
+      slider.scrollTo({
+        top: scrollAmount,
+      });
+    };
+
+    const interval = setInterval(slide, 40); // 40ms me move karega
+
+    // Clean up (important for performance)
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-
-    // Main section with light grey background and top-bottom padding
+    // Section background light grey
     <section className="bg-[#dcdcdc] py-20">
-      {/* bg-[#dcdcdc] = light grey background */}
-      {/* py-20 = padding top and bottom */}
-
       <div className="max-w-7xl mx-auto px-10">
-        {/* max-w-7xl = maximum width limit */}
-        {/* mx-auto = center the section horizontally */}
-        {/* px-10 = left and right padding */}
 
-        {/* GRID LAYOUT */}
+        {/* Grid layout left aur right side ke liye */}
         <div className="grid md:grid-cols-[1fr_400px] gap-16 items-start">
-          {/* grid = make grid layout */}
-          {/* md:grid-cols-[1fr_400px] = 
-              On medium screen and above:
-              Left column takes remaining space (1fr)
-              Right column fixed 400px width
-          */}
-          {/* gap-16 = space between columns */}
-          {/* items-start = align content to top */}
 
-          {/* ================= LEFT SIDE (ABOUT TEXT) ================= */}
+          {/* ================= LEFT SIDE ================= */}
           <div>
 
-            {/* Section Heading */}
+            {/* Heading */}
             <h2 className="text-5xl font-serif font-bold mb-8 text-black">
-              {/* text-5xl = big font size */}
-              {/* font-serif = serif font style */}
-              {/* font-bold = bold text */}
-              {/* mb-8 = margin bottom */}
               About IAP-ID
             </h2>
 
-            {/* First Paragraph */}
+            {/* Paragraph */}
             <p className="text-lg font-serif leading-8 mb-6 text-black">
-              {/* text-lg = medium text size */}
-              {/* leading-8 = line spacing */}
-              {/* mb-6 = space below paragraph */}
-              A very warm welcome to the website of the International Academy of
-              Pathology - Indian Division (IAP-ID). The IAP-ID was started in the
-              late 1960's with a few select members and from this small beginning
-              it has grown tremendously in all aspects of its operations,
-              especially so in the last few years.
+              A very warm welcome to the website of the International Academy of Pathology - Indian Division (IAP-ID). The IAP-ID was started in the late 1960's with a few select members and from this small beginning it has grown tremendously in all aspects of its operations, especially so in the last few years. The IAP-ID is one of the most active and dynamic Divisions of the International Academy of Pathology and has attracted a large membership and evoked lot of interest from Pathologists, both from India and abroad, due to its active academic and scientific programs.
             </p>
 
-            {/* Second Paragraph */}
-            <p className="text-lg font-serif leading-8 mb-6 text-black">
-              The IAP-ID is one of the most active and dynamic Divisions of the
-              International Academy of Pathology and has attracted a large
-              membership and evoked lot of interest from Pathologists, both from
-              India and abroad, due to its active academic and scientific programs.
-            </p>
-
-            {/* Read More Link */}
-            <a
-              href="#"
-              className="text-orange-500 font-semibold text-lg"
+            {/* Button use kiya instead of <a href="#"> to avoid error */}
+            <button
+              type="button"
+              className="text-orange-500 font-semibold text-lg hover:underline transition"
             >
-              {/* text-orange-500 = orange color */}
-              {/* font-semibold = slightly bold */}
               Read More &gt;&gt;
-            </a>
+            </button>
 
           </div>
 
-          {/* ================= RIGHT SIDE (LATEST NEWS CARD) ================= */}
-          <div className="bg-[#4b4343] rounded-2xl overflow-hidden shadow-lg h-fit">
-            {/* bg-[#4b4343] = dark brown background */}
-            {/* rounded-2xl = rounded corners */}
-            {/* overflow-hidden = hide extra content */}
-            {/* shadow-lg = big shadow */}
-            {/* h-fit = height adjusts automatically */}
+          {/* ================= RIGHT SIDE PREMIUM GLASS CARD ================= */}
+          <div
+            className="rounded-2xl overflow-hidden h-[420px]
+                       backdrop-blur-lg bg-white/40 
+                       border border-white/50
+                       shadow-2xl transition duration-500 
+                       hover:scale-105"
+          >
 
-            {/* Orange Header Section */}
-            <div className="bg-[#f4a000] text-center py-4">
-              {/* Orange background */}
-              {/* text-center = center text */}
-              {/* py-4 = padding top-bottom */}
+            {/* Card Header */}
+            <div className="bg-orange-400/90 text-center py-4 backdrop-blur-md">
               <h3 className="text-2xl font-serif font-bold text-black">
-                Latest New
+                Latest News
               </h3>
             </div>
 
-            {/* News Items Section */}
-            <div className="p-6 space-y-8 text-white font-serif text-base">
-              {/* p-6 = padding inside card */}
-              {/* space-y-8 = space between each news item */}
-              {/* text-white = white text */}
-
-              {/* News Item 1 */}
-              <div className="border-l-2 border-gray-300 pl-4">
-                {/* border-l-2 = left border line */}
-                {/* pl-4 = padding left */}
-                XXVIIth Annual CME of the International Academy of
-                Pathology-Indian Division
-                <span className="ml-2 text-red-500 font-bold"> NEW</span>
-              </div>
-
-              {/* News Item 2 */}
-              <div className="border-l-2 border-gray-300 pl-4">
-                Dr Surabhi Jain. AIIMS New Delhi.
-                <span className="ml-2 text-red-500 font-bold"> NEW</span>
-              </div>
-
-              {/* News Item 3 */}
-              <div className="border-l-2 border-gray-300 pl-4">
-                Mid-year Teaching Program: 6-7 th April 2025
-                <span className="ml-2 text-red-500 font-bold"> NEW</span>
-              </div>
-
-              {/* News Item 4 */}
-              <div className="border-l-2 border-gray-300 pl-4">
-                IAPID mid year teaching program- Chandigarh on Autopsy
-                Pathology. 6th and 7th April 2025.
-                <span className="ml-2 text-red-500 font-bold"> NEW</span>
-              </div>
-
+            {/* Auto Vertical Slider Area */}
+            <div
+              ref={sliderRef}
+              className="p-6 space-y-8 text-black font-serif text-base 
+                         overflow-hidden h-[340px]"
+            >
+              {/* 2 baar repeat kar rahe hain smooth loop ke liye */}
+              {[...Array(2)].map((_, index) => (
+                <div key={index}>
+                  <NewsItem text="XXVIIth Annual CME of IAP-ID" />
+                  <NewsItem text="Dr Surabhi Jain. AIIMS New Delhi." />
+                  <NewsItem text="Mid-year Teaching Program: 6-7 April 2025" />
+                  <NewsItem text="Chandigarh Autopsy Pathology Program 2025" />
+                </div>
+              ))}
             </div>
+
           </div>
 
         </div>
@@ -131,5 +105,30 @@ const AboutSection = () => {
   );
 };
 
-// Export component so we can use it in App.js
+
+// NewsItem component banaya (reusable)
+const NewsItem = ({ text }) => {
+  return (
+    <div
+      className="border-l-2 border-black/40 pl-4 mb-6
+                 transition duration-300 hover:border-orange-500 
+                 hover:text-orange-600 cursor-pointer"
+    >
+      {/* News text */}
+      {text}
+
+      {/* NEW glowing badge */}
+      <span
+        className="ml-3 px-3 py-1 text-xs font-bold rounded-full 
+                   bg-red-600 text-white 
+                   animate-pulse
+                   shadow-[0_0_10px_red]"
+      >
+        NEW
+      </span>
+    </div>
+  );
+};
+
+// Export kar rahe hain taaki App.js me use ho sake
 export default AboutSection;
