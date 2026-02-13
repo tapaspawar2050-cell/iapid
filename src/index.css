@@ -1,21 +1,48 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* ================= TAILWIND CSS SETUP ================= */
 
-/* Custom scrollbar */
+/* 
+  These 3 lines are required to use Tailwind CSS.
+  Tailwind gives ready-made classes like:
+  text-center, bg-red-500, p-4 etc.
+*/
+
+@tailwind base;        /* Basic default styles */
+@tailwind components;  /* Ready-made components */
+@tailwind utilities;   /* Utility classes (like margin, padding, color) */
+
+
+/* ================= CUSTOM SCROLLBAR DESIGN ================= */
+
+/* 
+  This changes the width (thickness) of the scrollbar
+  Scrollbar = the side bar used to scroll page up and down
+*/
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 10px;   /* Scrollbar thickness = 10 pixels */
 }
 
+
+/* 
+  This styles the track (background area of scrollbar)
+  Track = the long background area where scrollbar moves
+*/
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #f1f1f1;   /* Light grey color */
 }
 
+
+/* 
+  This styles the thumb (the moving part you drag)
+*/
 ::-webkit-scrollbar-thumb {
-  background: #F7931E;
-  border-radius: 5px;
+  background: #F7931E;   /* Orange color */
+  border-radius: 5px;    /* Rounded corners */
 }
 
+
+/* 
+  This changes color when mouse is placed over scrollbar
+*/
 ::-webkit-scrollbar-thumb:hover {
-  background: #d67d1a;
+  background: #d67d1a;   /* Darker orange on hover */
 }

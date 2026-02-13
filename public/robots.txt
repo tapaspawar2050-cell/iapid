@@ -1,3 +1,14 @@
+# Yeh robots.txt file hai
+# Isse Google jaise search engine ko instruction diya jata hai
+
 # https://www.robotstxt.org/robotstxt.html
+# Is website par robots.txt ke bare me detail milti hai
+
 User-agent: *
+# User-agent ka matlab: Kaun sa search engine?
+# * ka matlab: Sabhi search engines (Google, Bing, etc.)
+
 Disallow:
+# Disallow ka matlab: Kaunsa page block karna hai
+# Abhi yahan kuch likha nahi hai
+# Iska matlab: Sabhi pages dekhne ki permission hai

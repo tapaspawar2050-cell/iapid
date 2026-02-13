@@ -1,23 +1,67 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# Yeh file batati hai ki kaunsi files GitHub par upload nahi karni
+# In files ko ignore kiya jayega
 
-# dependencies
+# ==========================
+# dependencies (Library Files)
+# ==========================
+
 /node_modules
+# Yeh folder me sari installed libraries hoti hain
+# Yeh bahut bada hota hai
+# Isko upload karne ki zarurat nahi hoti
+
 /.pnp
 .pnp.js
+# Yeh bhi dependency se related files hain
+# Inhe bhi upload nahi karte
 
-# testing
+
+# ==========================
+# testing files
+# ==========================
+
 /coverage
+# Jab hum testing karte hain to yeh folder banta hai
+# Isme test ka result hota hai
+# Isko GitHub par daalne ki zarurat nahi
 
-# production
+
+# ==========================
+# production build files
+# ==========================
+
 /build
+# Jab website final banakar ready karte hain
+# To build folder banta hai
+# Yeh automatically dobara ban sakta hai
+# Isliye isko upload nahi karte
 
-# misc
+
+# ==========================
+# extra / system files
+# ==========================
+
 .DS_Store
+# Yeh Mac computer ki system file hoti hai
+# Project ke kaam ki nahi hoti
+
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
+# In files me secret information hoti hai
+# Jaise password, API key, etc.
+# Inhe kabhi bhi GitHub par upload nahi karna chahiye
+
+
+# ==========================
+# error log files
+# ==========================
 
 npm-debug.log*
+# Agar npm me error aaye to yeh file banti hai
+
 yarn-debug.log*
 yarn-error.log*
+# Agar yarn me error aaye to yeh files banti hain
+# Inhe upload karne ki zarurat nahi
