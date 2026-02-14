@@ -1,6 +1,13 @@
+// React library import kar rahe hain (component banane ke liye)
 import React from "react";
+
+// React Router ka Link use karte hain page change karne ke liye
 import { Link } from "react-router-dom";
+
+// Background image import kar rahe hain
 import footerBg from "../assets/footer_bg_1.jpg";
+
+// Icons import kar rahe hain (social media aur contact icons)
 import {
   FaEnvelope,
   FaMapMarkerAlt,
@@ -9,65 +16,50 @@ import {
   FaGoogle,
 } from "react-icons/fa";
 
+// Footer naam ka component bana rahe hain
 const Footer = () => {
   return (
+
+    // Footer ka main container
     <footer className="w-full overflow-hidden">
 
-      <div className="relative min-h-[550px] md:h-[70vh] flex items-center">
+      {/* Yeh section background image aur content ko hold karega */}
+      <div className="relative min-h-[430px] md:h-[30vh] flex items-center">
 
-        {/* Background */}
+        {/* Background Image */}
+        {/* Absolute ka matlab yeh image pura background cover karegi */}
         <div
-          className="absolute inset-0 bg-cover bg-right bg-no-repeat md:bg-fixed"
+          className="absolute inset-1 bg-cover bg-right bg-no-repeat md:bg-fixed"
           style={{ backgroundImage: `url(${footerBg})` }}
         ></div>
 
-        {/* Medical White Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/80 to-blue-100/40"></div>
+        {/* White transparent gradient (thoda halka safed effect dene ke liye) */}
+        <div className="absolute inset-0 bg-gradient-to-r from-white/15 via-white/10 to-blue-20/10"></div>
 
-        {/* 💎 Ultra Realistic Main Glass Bubble */}
-        <div className="absolute right-16 top-1/4 w-[340px] h-[340px] 
-                        rounded-full 
-                        bg-white/30 
-                        backdrop-blur-2xl 
-                        border border-white/40 
-                        shadow-[0_0_80px_rgba(255,255,255,0.8)]
-                        animate-float-slow animate-soft-pulse">
-        </div>
-
-        {/* 🌊 Floating Small Bubbles */}
-        <div className="absolute right-44 top-20 w-10 h-10 
-                        bg-white/50 rounded-full 
-                        backdrop-blur-xl 
-                        shadow-lg animate-float-fast"></div>
-
-        <div className="absolute right-64 bottom-24 w-6 h-6 
-                        bg-white/60 rounded-full 
-                        backdrop-blur-md 
-                        shadow-md animate-float-slow"></div>
-
-        <div className="absolute right-80 top-40 w-4 h-4 
-                        bg-white/70 rounded-full 
-                        animate-float-fast"></div>
-
-        {/* Main Content */}
+        {/* Main Content yahan se start hota hai */}
         <div className="relative z-10 max-w-[1300px] mx-auto px-6 md:px-16 lg:px-24 py-16 w-full">
 
-          <div className="w-full md:w-[60%]">
+          {/* Left side content (50% width) */}
+          <div className="w-full md:w-[50%]">
 
+            {/* 3 column layout */}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
 
-              {/* Column 1 */}
+              {/* Column 1 - Useful Links */}
               <div>
                 <h3 className="text-xl md:text-2xl font-semibold text-black mb-5">
                   Useful Links
                 </h3>
 
                 <ul className="space-y-3 text-base md:text-lg text-gray-800">
+                  {/* Membership page ka link */}
                   <li>
                     <Link to="/membership" className="hover:text-blue-600 transition">
                       Membership
                     </Link>
                   </li>
+
+                  {/* Conference page ka link */}
                   <li>
                     <Link to="/conference" className="hover:text-blue-600 transition">
                       Conference/CME
@@ -76,13 +68,14 @@ const Footer = () => {
                 </ul>
               </div>
 
-              {/* Column 2 */}
+              {/* Column 2 - Privacy Section */}
               <div>
                 <h3 className="text-xl md:text-2xl font-semibold text-black mb-5">
                   Privacy
                 </h3>
 
                 <ul className="space-y-3 text-base md:text-lg text-gray-800">
+                  {/* Newsletter page ka link */}
                   <li>
                     <Link to="/newsletter" className="hover:text-blue-600 transition">
                       Newsletter
@@ -91,12 +84,13 @@ const Footer = () => {
                 </ul>
               </div>
 
-              {/* Column 3 */}
+              {/* Column 3 - Contact Information */}
               <div>
                 <h3 className="text-xl md:text-2xl font-semibold text-black mb-5">
                   Contact Info
                 </h3>
 
+                {/* Email link (click karne se mail open hoga) */}
                 <a
                   href="mailto:Secretary.IAPID25@gmail.com"
                   className="flex items-start gap-3 mb-4 text-gray-800 hover:text-blue-600 transition"
@@ -105,6 +99,7 @@ const Footer = () => {
                   Secretary.IAPID25@gmail.com
                 </a>
 
+                {/* Google Maps location link */}
                 <a
                   href="https://www.google.com/maps/search/?api=1&query=Nizam's+Institute+of+Medical+Science+Punjagutta+Hyderabad+500082"
                   target="_blank"
@@ -121,34 +116,47 @@ const Footer = () => {
               </div>
             </div>
 
-            {/* Social + Newsletter */}
+            {/* Social Media icons + Newsletter input */}
             <div className="flex flex-col lg:flex-row items-start lg:items-center gap-8 mt-12">
 
+              {/* Social Media Icons */}
               <div className="flex gap-4">
+
+                {/* Facebook icon */}
                 <div className="bg-blue-600 text-white p-3 rounded-full hover:scale-110 transition shadow-lg cursor-pointer">
                   <FaFacebookF />
                 </div>
+
+                {/* Twitter icon */}
                 <div className="bg-black text-white p-3 rounded-full hover:scale-110 transition shadow-lg cursor-pointer">
                   <FaTwitter />
                 </div>
+
+                {/* Google icon */}
                 <div className="bg-red-600 text-white p-3 rounded-full hover:scale-110 transition shadow-lg cursor-pointer">
                   <FaGoogle />
                 </div>
               </div>
 
+              {/* Newsletter subscribe section */}
               <div className="flex w-full sm:w-[380px]">
+
+                {/* Email input box */}
                 <input
                   type="email"
                   placeholder="Newsletter"
                   className="w-full px-5 py-3 border border-gray-400 rounded-l-full outline-none bg-white/80 backdrop-blur-md"
                 />
+
+                {/* Subscribe button */}
                 <button className="px-6 py-3 bg-blue-700 text-white rounded-r-full hover:bg-blue-800 transition">
                   Subscribe
                 </button>
               </div>
             </div>
 
-            <div className="pt-10 mt-10 text-sm text-gray-700">
+            {/* Copyright text */}
+            <div className="pt-10 mt-10 text-sm text-gray-800">
               Copyright ©2026 All rights reserved | Design by :
               Triosoft Technologies Pvt. Ltd.
             </div>
@@ -160,4 +168,5 @@ const Footer = () => {
   );
 };
 
+// Component ko export kar rahe hain taaki dusre file me use kar sakein
 export default Footer;

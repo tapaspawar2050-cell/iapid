@@ -46,11 +46,15 @@ const Hero = () => {
           </h1>
 
           {/* Sub Heading */}
-          <h2 className="text-white 
-                         text-lg sm:text-xl md:text-2xl 
-                         font-bold mb-3 font-['Playfair_Display']">
-            Indian Division
-          </h2>
+         <h2 className="relative inline-block
+               text-gray-900 
+               text-lg sm:text-xl md:text-3xl 
+               font-extrabold mb-5 font-['Playfair_Display']
+               [text-shadow:1px_1px_0_white,-1px_-1px_0_white,1px_-1px_0_white,-1px_1px_0_white]
+               blink-soft">
+          Indian Division
+         </h2>
+
 
           {/* Description */}
           <p className="text-white 
