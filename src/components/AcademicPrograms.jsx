@@ -1,32 +1,27 @@
-// React library import kar rahe hain
 import React from "react";
-
-// Poster image import kar rahe hain (assets folder se)
 import apIapPoster from "../assets/iap-profile.jpg";
 
-// Functional Component bana rahe hain
 const AcademicPrograms = () => {
   return (
-
-    // Section tag pura page ka background aur spacing set karta hai
-    <section className="bg-[#dcdcdc] min-h-screen py-10 md:py-16 font-serif text-black">
+    // overflow-x-hidden horizontal scroll prevent karega
+    <section className="bg-[#dcdcdc] min-h-screen py-8 sm:py-10 md:py-16 font-serif text-black overflow-x-hidden">
       
-      {/* Center container jo content ko middle me rakhta hai */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+      {/* Responsive Container */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* ===== PAGE TITLE ===== */}
-        {/* Yeh page ka main heading hai */}
-        <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold text-center mb-10 md:mb-16 leading-tight">
+        <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-center mb-8 sm:mb-10 md:mb-16 leading-tight">
           IAP-ID Academic Programs 2026
         </h1>
 
-        {/* ===== TOP SECTION (Image + Right Side Content) ===== */}
-        <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-start mb-12 md:mb-16">
+        {/* ===== TOP SECTION ===== */}
+        {/* Mobile: 1 column | Desktop: 2 columns */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 md:gap-16 items-start mb-10 md:mb-16">
 
           {/* ===== IMAGE SECTION ===== */}
-          <div className="relative group">
+          <div className="relative group w-full">
 
-            {/* Glow Border (hover karne par light effect aayega) */}
+            {/* Glow Effect */}
             <div
               className="absolute -inset-1 rounded-2xl 
                          bg-gradient-to-r from-orange-400 via-pink-500 to-orange-600 
@@ -35,23 +30,23 @@ const AcademicPrograms = () => {
                          pointer-events-none"
             ></div>
 
-            {/* White Card jisme image hai */}
+            {/* Card */}
             <div
               className="relative bg-white p-4 sm:p-6 rounded-2xl shadow-lg
                          transition duration-500 transform
                          group-hover:scale-105 group-hover:-translate-y-2"
             >
 
-              {/* Poster Image */}
+              {/* Responsive Image */}
               <img
-                src={apIapPoster} // image source
-                alt="IAP-ID Academic Program Poster" // accessibility ke liye
-                loading="lazy" // image tab load hogi jab zarurat ho
-                draggable="false" // image drag nahi hogi
-                className="w-full rounded-lg select-none outline-none focus:outline-none"
+                src={apIapPoster}
+                alt="IAP-ID Academic Program Poster"
+                loading="lazy"
+                draggable="false"
+                className="w-full h-auto object-cover rounded-lg select-none"
               />
 
-              {/* Light Glass Effect hover par */}
+              {/* Glass Overlay */}
               <div
                 className="absolute inset-0 rounded-2xl 
                            bg-white/10
@@ -60,7 +55,7 @@ const AcademicPrograms = () => {
                            pointer-events-none"
               ></div>
 
-              {/* Orange Border hover par */}
+              {/* Orange Border */}
               <div
                 className="absolute inset-0 rounded-2xl
                            ring-2 ring-orange-400
@@ -72,18 +67,16 @@ const AcademicPrograms = () => {
             </div>
           </div>
 
-          {/* ===== RIGHT SIDE TEXT CONTENT ===== */}
-          <div className="text-base sm:text-lg md:text-[20px] leading-relaxed space-y-6">
+          {/* ===== RIGHT CONTENT ===== */}
+          <div className="text-sm sm:text-base md:text-lg lg:text-[20px] leading-relaxed space-y-5 sm:space-y-6">
 
-            {/* Simple paragraph */}
             <p>
               This is for your information regarding IAP-ID Academic Programs
               2026. The IAP-ID has the following programs during the course of
               the year:
             </p>
 
-            {/* Bullet List */}
-            <ul className="list-disc pl-6 md:pl-8 space-y-3 md:space-y-4">
+            <ul className="list-disc pl-5 sm:pl-6 md:pl-8 space-y-2 sm:space-y-3 md:space-y-4">
               <li>Mid-Year Teaching Program (usually a Workshop) in April or May</li>
               <li>IAP-ID Annual CME usually in August or September.</li>
               <li>
@@ -96,9 +89,8 @@ const AcademicPrograms = () => {
         </div>
 
         {/* ===== FULL DETAILS SECTION ===== */}
-        <div className="text-base sm:text-lg md:text-[19px] leading-relaxed space-y-6">
+        <div className="text-sm sm:text-base md:text-lg leading-relaxed space-y-5 sm:space-y-6">
 
-          {/* Paragraph 1 */}
           <p>
             Those members desirous of organizing and hosting the Mid Year Teaching
             Program 2026 or Annual CME 2026 should send their proposals and its theme
@@ -107,7 +99,6 @@ const AcademicPrograms = () => {
             Dr. Megha Uppin (address on website).
           </p>
 
-          {/* Paragraph 2 */}
           <p>
             For the Annual Conference 2026 (held along with IAPM Conference)
             those desirous of being Moderators for Slide seminar or Symposium
@@ -115,13 +106,11 @@ const AcademicPrograms = () => {
             Secretary and Treasurer, IAP-ID.
           </p>
 
-          {/* Paragraph 3 */}
           <p>
             As per the decision of the General Body certain topics may be suggested
             as possible subjects for Slide seminar and Symposium.
           </p>
 
-          {/* Last Date Highlight */}
           <p>
             All proposals should reach the Secretary & Treasurer, IAP-ID,
             in prescribed formats latest by{" "}
@@ -129,24 +118,24 @@ const AcademicPrograms = () => {
               30th October 2025
             </span>.
           </p>
+{/* ===== DOWNLOAD LINK (Screenshot Style) ===== */}
+<p className="mt-6 text-base sm:text-lg md:text-[19px] leading-relaxed">
+  <a
+    href="/IAP-ID-proposal-format.doc"
+    download
+    className="text-red-600 font-semibold hover:underline"
+  >
+    Click here
+  </a>{" "}
+  to download the format for the proposal from the IAP ID website.
+</p>
 
-          {/* ===== DOWNLOAD BUTTON ===== */}
-          {/* Is button par click karne se document download hoga */}
-          <a
-            href="/IAP-ID-proposal-format.doc" // file public folder me honi chahiye
-            download // ye attribute download karwata hai
-            className="inline-block mt-4 bg-orange-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-orange-600 transition duration-300"
-          >
-            Download Proposal Format
-          </a>
 
-          {/* Membership Instruction */}
           <p>
             Kindly note that those sending proposals must ensure that their
             membership is updated and mention their Membership number.
           </p>
 
-          {/* Moderator Rule */}
           <p>
             The Moderators whose topics are selected should ensure that all
             speakers selected are existing members of IAP-ID.
@@ -155,23 +144,22 @@ const AcademicPrograms = () => {
           {/* ===== CONTACT SECTION ===== */}
           <div className="mt-8">
 
-            {/* Contact Heading */}
-            <h3 className="text-xl md:text-2xl font-bold mb-4">
+            <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-4">
               The proposals should be sent to:
             </h3>
 
-            {/* Contact Details */}
-            <p className="font-bold text-lg md:text-xl">Dr. Megha Uppin</p>
+            <p className="font-bold text-base sm:text-lg md:text-xl">
+              Dr. Megha Uppin
+            </p>
             <p>Secretary & Treasurer IAP-ID</p>
             <p>Professor, Department of Pathology</p>
             <p>Nizam's Institute of Medical Sciences</p>
             <p>Punjagutta Hyderabad 500082</p>
 
-            {/* Email Link */}
-            <p className="mt-3">
+            <p className="mt-3 break-words">
               Email:{" "}
               <a
-                href="mailto:Secretary.IAPID25@gmail.com" // email open karega
+                href="mailto:Secretary.IAPID25@gmail.com"
                 className="text-orange-600 font-semibold hover:underline"
               >
                 Secretary.IAPID25@gmail.com
@@ -187,5 +175,4 @@ const AcademicPrograms = () => {
   );
 };
 
-// Component export kar rahe hain taaki dusre file me use ho sake
 export default AcademicPrograms;
