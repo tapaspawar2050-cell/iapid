@@ -43,7 +43,6 @@ const AboutSection = () => {
 
           {/* ================= LEFT SIDE ================= */}
           <div>
-
             {/* Heading */}
             <h2 className="text-5xl font-serif font-bold mb-8 text-black">
               About IAP-ID
