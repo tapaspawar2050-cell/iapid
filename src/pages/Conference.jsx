@@ -1,208 +1,83 @@
-// Importing React library
 import React from "react";
 
-// This is ConferenceCME component
-// It shows information about Conference and CME programs
 const ConferenceCME = () => {
+  // Latest Events Data based on your screenshot
+  const eventData = [
+    {
+      title: "XXVIIth Annual CME of the International Academy of Pathology-Indian Division (IAP-ID)",
+      subtitle: "Hepatopancreaticobiliary Pathology 1st - 2nd November 2025 Amrita Institute of Medical Sciences, Kochi",
+      link: "#"
+    },
+    {
+      title: "INTERNATIONAL ACADEMY OF PATHOLOGY - INDIAN DIVISION Annual Conference 2024",
+      subtitle: "INTERNATIONAL ACADEMY OF PATHOLOGY - 12th December 2024 7.45 am-05.30 pm",
+      location: "S. C. B. Medical College Cuttack, Odisha",
+      link: "#"
+    },
+    {
+      title: "INTERNATIONAL ACADEMY OF PATHOLOGY - INDIAN DIVISION Annual Conference 2024 Slide seminar programme",
+      subtitle: "INTERNATIONAL ACADEMY OF PATHOLOGY - 12th December 2024 10.30-12.30 pm",
+      location: "S. C. B. Medical College Cuttack, Odisha",
+      link: "#"
+    },
+    {
+      title: "IAP-ID Symposium: Salivary Gland Pathology- Solving Difficult Cases & Mastering Emerging Concepts",
+      subtitle: "IAP-ID Symposium: Salivary Gland Pathology- 12th December 2024 2:00 pm to 4:00 pm",
+      location: "SCB Medical College, Cuttack",
+      link: "#"
+    }
+  ];
 
-  // return means what we want to display on the screen
   return (
-
-    // section is a big container for the full page
-    // It has background color, padding and minimum full screen height
-    <section className="bg-[#dcdcdc] py-20 font-serif text-black min-h-screen">
-      <div className="max-w-7xl mx-auto px-6">
-
+    <section className="bg-white py-12 font-serif text-black min-h-screen">
+      <div className="max-w-7xl mx-auto px-6 md:px-12">
+        
         {/* ================= PAGE TITLE ================= */}
-        <h1 className="text-5xl font-bold mb-10">
-          Conference / CME
+        <h1 className="text-3xl font-normal border-b border-[#a11d43] pb-4 mb-10 uppercase tracking-wide text-[#a11d43]">
+          CONFERENCE / CME
         </h1>
 
-        {/* ================= INTRO SECTION ================= */}
-        {/* White box with shadow */}
-        <div className="bg-white p-10 rounded-2xl shadow-lg mb-14 text-lg leading-relaxed space-y-6">
-
-          {/* Paragraph 1 */}
+        {/* ================= INTRO & ACTIVITIES SECTION ================= */}
+        <div className="mb-14 text-lg leading-relaxed space-y-6 text-gray-800 italic">
           <p>
-            The IAP-ID organizes various academic activities throughout the year
-            including the Mid Year Teaching Program, Annual CME and the Annual
-            Conference held along with the IAPM Conference.
+            The IAP-ID organizes three main scientific and academic activities in a year: 
+            the Mid Year Teaching Programme (usually in April/May), the Annual CME (August/September), 
+            and the Annual Meeting (November/December) held with the IAPM conference.
           </p>
-
-          {/* Paragraph 2 */}
           <p>
-            Participation in Conferences, Slide Seminars and CME programs is
-            open to members of IAP-ID. Members receive priority registration,
-            academic updates and access to scientific discussions.
+            Participation in Conferences, Slide Seminars and CME programs is open to members of IAP-ID. 
+            Members receive priority registration and access to expert guest lectures and scientific discussions.
           </p>
-
-          {/* Important note */}
-          <p className="font-semibold">
-            Kindly ensure your membership is active before registering for any
-            Conference / CME program.
+          <p className="font-bold not-italic text-black border-l-4 border-orange-500 pl-4 bg-gray-50 py-2">
+            Kindly ensure your membership is active before registering for any Conference / CME program.
           </p>
         </div>
 
-        {/* ================= MEMBERSHIP SECTION ================= */}
-        <h2 className="text-4xl font-bold mb-8">
-          Membership Details
-        </h2>
+        <hr className="mb-12 border-gray-200" />
 
-        {/* ================= DOWNLOAD LINKS ================= */}
-        {/* White box containing download links */}
-        <div className="bg-white p-10 rounded-2xl shadow-lg mb-14 space-y-6 text-lg">
+        {/* ================= LATEST EVENTS & BROCHURES ================= */}
+        <div className="space-y-12">
+          {eventData.map((event, idx) => (
+            <div key={idx} className="space-y-2 group">
+              {/* Event Title - Bold Black */}
+              <h2 className="text-lg font-bold leading-tight uppercase group-hover:text-[#a11d43] transition-colors">
+                {event.title}
+              </h2>
+              
+              {/* Event Details */}
+              <div className="text-[17px] text-gray-700 font-medium italic">
+                <p>{event.subtitle}</p>
+                {event.location && <p>{event.location}</p>}
+              </div>
 
-          {/* Each paragraph contains a download option */}
-
-          <p>
-            Membership Form{" "}
-            <span className="text-orange-600 font-semibold cursor-pointer hover:underline">
-              Download HERE
-            </span>
-          </p>
-
-          <p>
-            Associate Membership Form (Post Graduate students, etc.){" "}
-            <span className="text-orange-600 font-semibold cursor-pointer hover:underline">
-              Download HERE
-            </span>
-          </p>
-
-          <p>
-            Members List Active Members list as on 1st May 2025{" "}
-            <span className="text-orange-600 font-semibold cursor-pointer hover:underline">
-              Download HERE
-            </span>
-          </p>
-
-          {/* More member list download links */}
-          <p>
-            Members List Active Members list as on 1st June 2024{" "}
-            <span className="text-orange-600 font-semibold cursor-pointer hover:underline">
-              Download HERE
-            </span>
-          </p>
-
-          <p>
-            Members List Active Members list as on 1st January 2024{" "}
-            <span className="text-orange-600 font-semibold cursor-pointer hover:underline">
-              Download HERE
-            </span>
-          </p>
-
-          <p>
-            Members List Active Members list as on 1st September 2023{" "}
-            <span className="text-orange-600 font-semibold cursor-pointer hover:underline">
-              Download HERE
-            </span>
-          </p>
-
-          <p>
-            Members List Active Members list as on 1st March 2023{" "}
-            <span className="text-orange-600 font-semibold cursor-pointer hover:underline">
-              Download HERE
-            </span>
-          </p>
-
-        </div>
-
-        {/* ================= FEES SECTION ================= */}
-        <div className="mb-14">
-
-          {/* Section title */}
-          <h2 className="text-3xl font-bold mb-6">
-            Fees w.e.f 1st January 2023
-          </h2>
-
-          {/* White box for fees details */}
-          <div className="bg-white p-8 rounded-2xl shadow-lg text-lg space-y-4">
-
-            {/* Membership fees */}
-            <p><strong>Annual Membership Fee:</strong> ₹ 1000</p>
-            <p><strong>5 Years Membership Fee:</strong> ₹ 5000</p>
-            <p><strong>*Associate Membership Fee (Annual):</strong> ₹ 500</p>
-
-            {/* Extra explanation */}
-            <p className="mt-6 text-gray-700">
-              *IAP-ID has started Associate Membership for postgraduate students
-              in Pathology and others. Associate Members have no voting rights.
-              They can become full members after attaining their postgraduate qualification.
-              For further details please contact the Secretary & Treasurer, IAP-ID.
-            </p>
-          </div>
-        </div>
-
-        {/* ================= PAYMENT DETAILS ================= */}
-        <div className="mb-14">
-
-          <h2 className="text-3xl font-bold mb-6">
-            Payment Details
-          </h2>
-
-          {/* White box for payment information */}
-          <div className="bg-white p-8 rounded-2xl shadow-lg text-lg space-y-6">
-
-            {/* Payment method by Cheque/DD */}
-            <p>
-              Please send the membership fee by Demand Draft / Cheque drawn in favour of:
-            </p>
-
-            {/* Account name */}
-            <p className="font-semibold">
-              "SECRETARY & TREASURER, IAP- INDIAN DIVISION"
-            </p>
-
-            <p>Payable at Hyderabad.</p>
-
-            {/* Line separator */}
-            <hr className="my-4" />
-
-            {/* Online transfer section */}
-            <h3 className="text-2xl font-semibold">
-              For Online Transfer
-            </h3>
-
-            {/* Bank details */}
-            <p><strong>Account Name:</strong> Secretary Treasurer IAP- Indian Division</p>
-            <p><strong>Name:</strong> Dr Megha Uppin</p>
-            <p><strong>Account Number:</strong> 3632000100082636</p>
-            <p><strong>MICR Code:</strong> 500024012</p>
-            <p><strong>IFSC Code:</strong> PUNB0363200</p>
-
-            {/* Reminder about cheque */}
-            <p className="mt-4">
-              Membership by DD / Cheque drawn in favour of 
-              "Secretary & Treasurer, IAP- Indian Division". 
-              Payable at Hyderabad.
-            </p>
-          </div>
-        </div>
-
-        {/* ================= MAILING ADDRESS ================= */}
-        <div>
-
-          <h2 className="text-3xl font-bold mb-6">
-            Mail the Forms To
-          </h2>
-
-          {/* White box with address */}
-          <div className="bg-white p-8 rounded-2xl shadow-lg text-lg space-y-2">
-
-            <p className="font-semibold">Dr. Megha Uppin</p>
-            <p>Secretary & Treasurer</p>
-            <p>IAP - Indian Division</p>
-            <p>Department of Pathology</p>
-            <p>Nizam's Institute of Medical Science</p>
-            <p>Punjagutta Hyderabad 500082</p>
-
-            {/* Email address */}
-            <p>
-              Email:{" "}
-              <span className="text-orange-600 font-semibold">
-                secretary.iapid25@gmail.com
-              </span>
-            </p>
-          </div>
+              {/* Download Link - Pink/Red */}
+              <p className="pt-1">
+                <span className="text-[#a11d43] font-bold text-lg cursor-pointer hover:underline underline-offset-4">
+                  Download Brochure
+                </span>
+              </p>
+            </div>
+          ))}
         </div>
 
       </div>
@@ -210,5 +85,4 @@ const ConferenceCME = () => {
   );
 };
 
-// Exporting component so we can use it in other files
 export default ConferenceCME;

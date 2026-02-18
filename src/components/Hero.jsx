@@ -30,7 +30,7 @@ const Hero = () => {
       </video>
 
       {/* 🔥 Dark Overlay */}
-      <div className="absolute inset-0 bg-black/50"></div>
+      <div className="absolute inset-0 bg-lightgray/50"></div>
 
       {/* 🔹 Content */}
       <div className="relative z-10 flex items-center justify-center md:justify-start min-h-[100vh] px-6 sm:px-8 md:px-16 lg:px-24">

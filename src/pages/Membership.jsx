@@ -1,196 +1,100 @@
-// Importing React library
-// React is needed to create components
 import React from "react";
 
-// This is Membership component
-// It shows membership forms, fees, payment details and address
 const Membership = () => {
-
-  // return means what we want to show on the screen
   return (
-
-    // <section> is the full page container
-    // bg-[#dcdcdc] → light grey background
-    // py-20 → padding top and bottom
-    // font-serif → serif font style
-    // text-black → black text color
-    // min-h-screen → minimum full screen height
-    <section className="bg-[#dcdcdc] py-20 font-serif text-black min-h-screen">
-      <div className="max-w-7xl mx-auto px-6">
-
+    <section className="bg-white py-12 font-serif text-black min-h-screen">
+      <div className="max-w-7xl mx-auto px-6 md:px-12">
+        
         {/* ================= PAGE TITLE ================= */}
-        {/* Big heading at top */}
-        <h1 className="text-5xl font-bold mb-10">
-          Membership
+        <h1 className="text-3xl font-normal border-b border-gray-300 pb-4 mb-8 uppercase tracking-wide">
+          MEMBERSHIP
         </h1>
 
         {/* ================= DOWNLOAD LINKS SECTION ================= */}
-        {/* White box that contains download links */}
-        <div className="bg-white p-10 rounded-2xl shadow-lg mb-14 space-y-6 text-lg">
-
-          {/* Membership Form */}
-          <p>
-            Membership Form{" "}
-            {/* This looks like a link (but not real link yet) */}
-            <span className="text-orange-600 font-semibold cursor-pointer hover:underline">
-              Download HERE
-            </span>
-          </p>
-
-          {/* Associate Membership Form */}
-          <p>
-            Associate Membership Form (Post Graduate students, etc.){" "}
-            <span className="text-orange-600 font-semibold cursor-pointer hover:underline">
-              Download HERE
-            </span>
-          </p>
-
-          {/* Members list - different dates */}
-          <p>
-            Members List Active Members list as on 1st May 2025{" "}
-            <span className="text-orange-600 font-semibold cursor-pointer hover:underline">
-              Download HERE
-            </span>
-          </p>
-
-          <p>
-            Members List Active Members list as on 1st June 2024{" "}
-            <span className="text-orange-600 font-semibold cursor-pointer hover:underline">
-              Download HERE
-            </span>
-          </p>
-
-          <p>
-            Members List Active Members list as on 1st January 2024{" "}
-            <span className="text-orange-600 font-semibold cursor-pointer hover:underline">
-              Download HERE
-            </span>
-          </p>
-
-          <p>
-            Members List Active Members list as on 1st September 2023{" "}
-            <span className="text-orange-600 font-semibold cursor-pointer hover:underline">
-              Download HERE
-            </span>
-          </p>
-
-          <p>
-            Members List Active Members list as on 1st March 2023{" "}
-            <span className="text-orange-600 font-semibold cursor-pointer hover:underline">
-              Download HERE
-            </span>
-          </p>
-
+        <div className="space-y-8 mb-12">
+          {[
+            { label: "Membership Form", link: "#" },
+            { label: "Associate Membership Form", sub: "(Post Graduate students, etc.)", link: "#" },
+            { label: "Members List", sub: "Active Members list as on 1st May 2025", link: "#" },
+            { label: "Members List", sub: "Active Members list as on 1st June 2024", link: "#" },
+            { label: "Members List", sub: "Active Members list as on 1st January 2024", link: "#" },
+            { label: "Members List", sub: "Active Members list as on 1st September 2023", link: "#" },
+            { label: "Members List", sub: "Active Members list as on 1st March 2023", link: "#" },
+          ].map((item, idx) => (
+            <div key={idx} className="border-b border-gray-200 pb-4">
+              <p className="text-[#a11d43] font-bold text-xl">
+                {item.label} {item.sub && <span className="text-gray-600 font-normal">{item.sub}</span>}
+                <span className="text-[#c71585] italic font-normal text-lg ml-2 cursor-pointer hover:underline">
+                  Download HERE
+                </span>
+              </p>
+            </div>
+          ))}
         </div>
 
-        {/* ================= FEES SECTION ================= */}
-        <div className="mb-14">
-
-          {/* Section heading */}
-          <h2 className="text-3xl font-bold mb-6">
+        {/* ================= FEES SECTION (ORANGE BANNER) ================= */}
+        <div className="my-16 shadow-xl border border-gray-200 rounded-xl overflow-hidden">
+          <div className="bg-[#fecb00] text-black text-center py-3 font-bold text-lg border-b border-gray-300">
             Fees w.e.f 1st January 2023
-          </h2>
-
-          {/* White box for fees details */}
-          <div className="bg-white p-8 rounded-2xl shadow-lg text-lg space-y-4">
-
-            {/* Fee details */}
-            <p>
-              <strong>Annual Membership Fee:</strong> ₹ 1000
-            </p>
-
-            <p>
-              <strong>5 Years Membership Fee:</strong> ₹ 5000
-            </p>
-
-            <p>
-              <strong>*Associate Membership Fee (Annual):</strong> ₹ 500
-            </p>
-
-            {/* Extra information about associate membership */}
-            <p className="mt-6 text-gray-700">
-              *Associate Members (like postgraduate students) cannot vote.
-              After completing their degree, they can become full members.
-            </p>
+          </div>
+          
+          <div className="p-8 space-y-6 text-lg">
+            <div className="flex justify-between border-b pb-2">
+              <span>Annual Membership Fee:</span>
+              <span className="font-bold">₹ 1000</span>
+            </div>
+            <div className="flex justify-between border-b pb-2">
+              <span>5 years Membership Fee:</span>
+              <span className="font-bold">₹ 5000</span>
+            </div>
+            <div className="flex justify-between">
+              <span>*Associate Membership Fee (Annual):</span>
+              <span className="font-bold">₹ 500</span>
+            </div>
           </div>
         </div>
 
-        {/* ================= PAYMENT DETAILS ================= */}
-        <div className="mb-14">
+        {/* ================= EXTRA INFO & PAYMENT DETAILS ================= */}
+        <div className="space-y-8 text-[15px] leading-relaxed italic text-gray-800">
+          <p>
+            *IAP-ID has started Associate Membership for postgraduate students in Pathology and others. The Associate Members would have no voting rights or other statutory rights of full members. These members can become full members after attaining their postgraduate qualification. For the further details please contact the Secretary & Treasurer, IAP-ID
+          </p>
 
-          {/* Section title */}
-          <h2 className="text-3xl font-bold mb-6">
-            Payment Details
-          </h2>
-
-          {/* White box for payment information */}
-          <div className="bg-white p-8 rounded-2xl shadow-lg text-lg space-y-6">
-
-            <p>
-              Please send the membership fee by Demand Draft / Cheque:
+          <div className="pt-4">
+            <p>Please send the membership fee by Demand Draft / Cheque drawn in favour of</p>
+            <p className="font-bold not-italic">
+              "SECRETARY & TREASURER, IAP- INDIAN DIVISION" <span className="font-normal">payable at</span> "Hyderabad".
             </p>
+          </div>
 
-            {/* Account name in bold */}
-            <p className="font-semibold">
-              "SECRETARY & TREASURER, IAP- INDIAN DIVISION"
-            </p>
+          <div className="space-y-4 pt-4">
+            <h3 className="text-[#a11d43] text-2xl font-bold not-italic">Mail the forms to:</h3>
+            <div className="not-italic text-gray-900 font-medium">
+              <p className="font-bold">Dr. Megha Uppin</p>
+              <p>Secretary & Treasurer</p>
+              <p>IAP - Indian Division,</p>
+              <p>Department of pathology Nizam's institute of medical science</p>
+              <p>Punjagutta Hyderabad 500082</p>
+              <p>Email: <span className="text-blue-600">secretary.iapid25@gmail.com</span></p>
+            </div>
+          </div>
 
-            <p>
-              Payable at "Hyderabad".
-            </p>
-
-            {/* Horizontal line for separation */}
-            <hr className="my-4" />
-
-            {/* Online payment heading */}
-            <h3 className="text-2xl font-semibold">
-              For Online Transfer of Membership Fee:
-            </h3>
-
-            {/* Bank details */}
-            <p><strong>Account Name:</strong> Secretary Treasurer IAP- Indian Division</p>
-            <p><strong>Name:</strong> Dr Megha Uppin</p>
-            <p><strong>Account Number:</strong> 3632000100082636</p>
-            <p><strong>MICR Code:</strong> 500024012</p>
-            <p><strong>IFSC Code:</strong> PUNB0363200</p>
-
+          <div className="space-y-2 pt-6">
+            <h3 className="text-[#a11d43] text-2xl font-bold not-italic">For Online Transfer of Membership Fee:</h3>
+            <div className="not-italic text-gray-800">
+              <p>Secretary Treasurer IAP- Indian Division</p>
+              <p>Dr Megha Uppin</p>
+              <p>Secretary and Treasurer</p>
+              <p>Account Number - 3632000100082636</p>
+              <p>For NEFT Transfer - MICR Code - 500024012</p>
+              <p>IFSC Code - PUNB0363200</p>
+              <p className="mt-4">Membership by DD / Cheque drawn in favour of "Secretary & Treasurer, IAP- Indian Division". Payable at Hyderabad .</p>
+            </div>
           </div>
         </div>
-
-        {/* ================= MAILING ADDRESS ================= */}
-        <div>
-
-          {/* Section heading */}
-          <h2 className="text-3xl font-bold mb-6">
-            Mail the Forms To
-          </h2>
-
-          {/* Address box */}
-          <div className="bg-white p-8 rounded-2xl shadow-lg text-lg space-y-2">
-
-            <p className="font-semibold">Dr. Megha Uppin</p>
-            <p>Secretary & Treasurer</p>
-            <p>IAP - Indian Division</p>
-            <p>Department of Pathology</p>
-            <p>Nizam's Institute of Medical Science</p>
-            <p>Punjagutta Hyderabad 500082</p>
-
-            {/* Email address */}
-            <p>
-              Email:{" "}
-              <span className="text-orange-600 font-semibold">
-                secretary.iapid25@gmail.com
-              </span>
-            </p>
-
-          </div>
-        </div>
-
       </div>
     </section>
   );
 };
 
-// Exporting Membership component
-// So we can use it in App.js or other pages
 export default Membership;
