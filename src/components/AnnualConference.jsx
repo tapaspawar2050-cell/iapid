@@ -19,13 +19,17 @@ const conferenceData = [
 
 
 // ===============================
-// ✅ Conference Card
+// ✅ Conference Card Component
 // ===============================
 
 const ConferenceCard = ({ title, images }) => {
   const [index, setIndex] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
 
+  // Auto Slide (Pause on Hover)
   useEffect(() => {
+    if (isHovered) return;
+
     const interval = setInterval(() => {
       setIndex((prev) =>
         prev === images.length - 1 ? 0 : prev + 1
@@ -33,7 +37,7 @@ const ConferenceCard = ({ title, images }) => {
     }, 3000);
 
     return () => clearInterval(interval);
-  }, [images.length]);
+  }, [images.length, isHovered]);
 
   const prevSlide = () => {
     setIndex((prev) =>
@@ -50,11 +54,11 @@ const ConferenceCard = ({ title, images }) => {
   return (
     <div
       className="bg-white rounded-2xl shadow-xl
-                 w-full
-                 max-w-[340px]
-                 mx-auto
-                 overflow-hidden
-                 flex flex-col"
+                 w-full max-w-[340px]
+                 mx-auto overflow-hidden flex flex-col
+                 transition-transform duration-300 hover:scale-105"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
       {/* Title */}
       <div className="bg-[#4A4444] text-white text-center 
@@ -75,7 +79,8 @@ const ConferenceCard = ({ title, images }) => {
         <img
           src={images[index]}
           alt={title}
-          className="w-full h-full object-cover transition duration-500"
+          className="w-full h-full object-cover
+                     transition-opacity duration-700 ease-in-out"
         />
 
         {/* Left Arrow */}
@@ -97,6 +102,18 @@ const ConferenceCard = ({ title, images }) => {
         >
           <FaChevronRight size={14} />
         </button>
+
+        {/* Dot Indicators */}
+        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
+          {images.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setIndex(i)}
+              className={`w-2.5 h-2.5 rounded-full transition-all
+                ${i === index ? "bg-white scale-125" : "bg-white/50"}`}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -104,7 +121,7 @@ const ConferenceCard = ({ title, images }) => {
 
 
 // ===============================
-// ✅ Main Section
+// ✅ Main Section Component
 // ===============================
 
 const AnnualConference = () => {

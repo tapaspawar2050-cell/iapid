@@ -171,42 +171,44 @@ const AboutIAPID = () => {
   );
 };
 
+
+   
+
 /* ================= RESPONSIVE SLIDER ================= */
 
 const SliderSection = ({ title, data, bg }) => {
   const [index, setIndex] = useState(0);
   const [cardsToShow, setCardsToShow] = useState(3);
 
-  /* Responsive Cards */
   useEffect(() => {
     const updateCards = () => {
-      if (window.innerWidth < 640) setCardsToShow(1);
-      else if (window.innerWidth < 1024) setCardsToShow(2);
-      else setCardsToShow(3);
+      let cards = 3;
+      if (window.innerWidth < 640) cards = 1;
+      else if (window.innerWidth < 1024) cards = 2;
+      setCardsToShow(cards);
+
+      // Adjust index if overflow
+      setIndex((prev) =>
+        prev > data.length - cards ? 0 : prev
+      );
     };
 
     updateCards();
     window.addEventListener("resize", updateCards);
     return () => window.removeEventListener("resize", updateCards);
-  }, []);
+  }, [data.length]);
 
   const next = () => {
-    setIndex(prev =>
+    setIndex((prev) =>
       prev >= data.length - cardsToShow ? 0 : prev + 1
     );
   };
 
   const prev = () => {
-    setIndex(prev =>
+    setIndex((prev) =>
       prev === 0 ? data.length - cardsToShow : prev - 1
     );
   };
-
-  /* Auto Slide */
-  useEffect(() => {
-    const interval = setInterval(next, 4000);
-    return () => clearInterval(interval);
-  }, [cardsToShow]);
 
   return (
     <section className={`${bg} py-12 md:py-20`}>
@@ -220,7 +222,9 @@ const SliderSection = ({ title, data, bg }) => {
 
           <button
             onClick={prev}
-            className="absolute left-0 md:-left-6 top-1/2 -translate-y-1/2 bg-[#404040] text-white p-2 md:p-3 rounded-full z-20"
+            className="absolute left-0 md:-left-6 top-1/2 -translate-y-1/2 
+                       bg-[#404040] text-white p-2 md:p-3 rounded-full 
+                       z-20 hover:bg-black transition"
           >
             <ChevronLeft size={22} />
           </button>
@@ -239,6 +243,7 @@ const SliderSection = ({ title, data, bg }) => {
                   style={{ minWidth: `${100 / cardsToShow}%` }}
                 >
                   <div className="bg-white rounded-2xl shadow-lg overflow-hidden h-full">
+
                     <div className="bg-[#404040] text-white text-center py-2 text-xs md:text-sm">
                       {item.role}
                     </div>
@@ -249,6 +254,7 @@ const SliderSection = ({ title, data, bg }) => {
                         alt={item.name}
                         className="w-20 h-24 md:w-24 md:h-28 object-cover rounded-lg mx-auto sm:mx-0"
                       />
+
                       <div className="text-center sm:text-left">
                         <h3 className="text-[#3f51b5] font-bold text-base md:text-lg">
                           {item.name}
@@ -275,7 +281,9 @@ const SliderSection = ({ title, data, bg }) => {
 
           <button
             onClick={next}
-            className="absolute right-0 md:-right-6 top-1/2 -translate-y-1/2 bg-[#404040] text-white p-2 md:p-3 rounded-full z-20"
+            className="absolute right-0 md:-right-6 top-1/2 -translate-y-1/2 
+                       bg-[#404040] text-white p-2 md:p-3 rounded-full 
+                       z-20 hover:bg-black transition"
           >
             <ChevronRight size={22} />
           </button>

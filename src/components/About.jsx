@@ -1,23 +1,21 @@
-// React import kar rahe hain
+// React import
 import React, { useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom"; // 👈 add this
 
-// AboutSection component banaya
 const AboutSection = () => {
 
-  // useRef slider ko control karne ke liye
   const sliderRef = useRef(null);
+  const navigate = useNavigate(); // 👈 navigation hook
 
-  // useEffect automatic slider chalane ke liye
   useEffect(() => {
-    const slider = sliderRef.current; // slider ko access kar rahe hain
-    let scrollAmount = 0; // scroll kitna hua track karne ke liye
+    const slider = sliderRef.current;
+    let scrollAmount = 0;
 
     const slide = () => {
       if (!slider) return;
 
-      scrollAmount += 1; // har baar thoda upar scroll karega
+      scrollAmount += 1;
 
-      // Jab half scroll ho jaye to phir se start kare
       if (scrollAmount >= slider.scrollHeight / 2) {
         scrollAmount = 0;
       }
@@ -27,43 +25,37 @@ const AboutSection = () => {
       });
     };
 
-    const interval = setInterval(slide, 40); // 40ms me move karega
-
-    // Clean up (important for performance)
+    const interval = setInterval(slide, 40);
     return () => clearInterval(interval);
   }, []);
 
   return (
-    // Section background light grey
     <section className="bg-[#dcdcdc] py-20">
       <div className="max-w-7xl mx-auto px-10">
 
-        {/* Grid layout left aur right side ke liye */}
         <div className="grid md:grid-cols-[1fr_400px] gap-16 items-start">
 
           {/* ================= LEFT SIDE ================= */}
           <div>
-            {/* Heading */}
             <h2 className="text-5xl font-serif font-bold mb-8 text-black">
               About IAP-ID
             </h2>
 
-            {/* Paragraph */}
             <p className="text-lg font-serif leading-8 mb-6 text-black">
-              A very warm welcome to the website of the International Academy of Pathology - Indian Division (IAP-ID). The IAP-ID was started in the late 1960's with a few select members and from this small beginning it has grown tremendously in all aspects of its operations, especially so in the last few years. The IAP-ID is one of the most active and dynamic Divisions of the International Academy of Pathology and has attracted a large membership and evoked lot of interest from Pathologists, both from India and abroad, due to its active academic and scientific programs.
+             A very warm welcome to the website of the International Academy of Pathology - Indian Division (IAP-ID). The IAP-ID was started in the late 1960's with a few select members and from this small beginning it has grown tremendously in all aspects of its operations, especially so in the last few years. The IAP-ID is one of the most active and dynamic Divisions of the International Academy of Pathology and has attracted a large membership and evoked lot of interest from Pathologists, both from India and abroad, due to its active academic and scientific programs.
             </p>
 
-            {/* Button use kiya instead of <a href="#"> to avoid error */}
+            {/* ✅ UPDATED BUTTON */}
             <button
               type="button"
+              onClick={() => navigate("/about")}   // 👈 route change here
               className="text-orange-500 font-semibold text-lg hover:underline transition"
             >
               Read More &gt;&gt;
             </button>
-
           </div>
 
-          {/* ================= RIGHT SIDE PREMIUM GLASS CARD ================= */}
+          {/* ================= RIGHT SIDE ================= */}
           <div
             className="rounded-2xl overflow-hidden h-[420px]
                        backdrop-blur-lg bg-white/40 
@@ -71,21 +63,17 @@ const AboutSection = () => {
                        shadow-2xl transition duration-500 
                        hover:scale-105"
           >
-
-            {/* Card Header */}
             <div className="bg-orange-400/90 text-center py-4 backdrop-blur-md">
               <h3 className="text-2xl font-serif font-bold text-black">
                 Latest News
               </h3>
             </div>
 
-            {/* Auto Vertical Slider Area */}
             <div
               ref={sliderRef}
               className="p-6 space-y-8 text-black font-serif text-base 
                          overflow-hidden h-[340px]"
             >
-              {/* 2 baar repeat kar rahe hain smooth loop ke liye */}
               {[...Array(2)].map((_, index) => (
                 <div key={index}>
                   <NewsItem text="XXVIIth Annual CME of IAP-ID" />
@@ -95,7 +83,6 @@ const AboutSection = () => {
                 </div>
               ))}
             </div>
-
           </div>
 
         </div>
@@ -104,8 +91,6 @@ const AboutSection = () => {
   );
 };
 
-
-// NewsItem component banaya (reusable)
 const NewsItem = ({ text }) => {
   return (
     <div
@@ -113,10 +98,8 @@ const NewsItem = ({ text }) => {
                  transition duration-300 hover:border-orange-500 
                  hover:text-orange-600 cursor-pointer"
     >
-      {/* News text */}
       {text}
 
-      {/* NEW glowing badge */}
       <span
         className="ml-3 px-3 py-1 text-xs font-bold rounded-full 
                    bg-red-600 text-white 
@@ -129,5 +112,4 @@ const NewsItem = ({ text }) => {
   );
 };
 
-// Export kar rahe hain taaki App.js me use ho sake
 export default AboutSection;
