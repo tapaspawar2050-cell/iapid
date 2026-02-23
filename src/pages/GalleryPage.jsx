@@ -1,106 +1,88 @@
 // Importing React
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
-// Importing images from assets folder
-// These images will be shown in gallery cards
+// Importing images
 import img1 from "../assets/iapid-cme-2025.jpg";
 import img2 from "../assets/apcon-2025.jpg";
 import img3 from "../assets/annual-conf-2024.jpg";
 import img4 from "../assets/mytp-2024.jpg";
 
-// This is Gallery component
-// It shows event photos in grid format
-const Gallery = () => {
+const GalleryPage = () => {
 
-  // return means what we want to show on screen
+  const navigate = useNavigate();
+
+  const galleryData = [
+    {
+      title: "IAPID Annual CME 2025 at Amrita Kochi",
+      image: img1,
+      folder: "kochi"
+    },
+    {
+      title: "APCON - IAPID 2025",
+      image: img2,
+      folder: "apcon"
+    },
+    {
+      title: "Annual Conference of IAP-ID 2024",
+      image: img3,
+      folder: "annual"
+    },
+    {
+      title: "MYTP - 2024",
+      image: img4,
+      folder: "milin"
+    }
+  ];
+
   return (
-
-    // section is a big container for the full page
-    // It has background color, padding and full height
-    <section className="bg-[#dcdcdc] py-20 font-serif text-black min-h-screen">
+    <section className="bg-[#dcdcdc] py-20 min-h-screen">
       <div className="max-w-7xl mx-auto px-6">
 
         {/* ================= HEADING ================= */}
-        {/* Main title of gallery page */}
-        <h1 className="text-4xl md:text-5xl font-bold text-center mb-16 leading-snug">
+        <h1 className="text-2xl md:text-4xl font-serif font-bold text-center mb-16 leading-snug text-black">
           The IAP-ID is one of the most active and dynamic Divisions of the
-          <br />
+          <br className="hidden md:block" />
           International Academy of Pathology
         </h1>
 
-        {/* ================= IMAGE GRID ================= */}
-        {/* 
-          grid-cols-1 → 1 column on small screens
-          sm:grid-cols-2 → 2 columns on small devices
-          lg:grid-cols-4 → 4 columns on large screens
-        */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+        {/* ================= GRID ================= */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
 
-          {/* ================= CARD 1 ================= */}
-          <div className="text-center">
+          {galleryData.map((item, index) => (
+            <div
+              key={index}
+              onClick={() => navigate(`/gallery/${item.folder}`)}
+              className="group cursor-pointer text-center transition-transform duration-300 hover:-translate-y-2"
+            >
+              
+              {/* Image Container */}
+              <div className="relative overflow-hidden rounded-2xl shadow-lg">
+                
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="w-full h-64 object-cover 
+                             transition-transform duration-500 
+                             group-hover:scale-110"
+                />
 
-            {/* Image */}
-            <img
-              src={img1}   // showing first imported image
-              alt="IAPID Annual CME 2025"
-              className="rounded-2xl shadow-xl w-full h-64 object-cover"
-            />
+                {/* Hover Overlay */}
+                <div className="absolute inset-0 bg-black/30 opacity-0 
+                                group-hover:opacity-100 transition duration-300"></div>
+              </div>
 
-            {/* Image title */}
-            <h3 className="mt-4 text-xl font-semibold">
-              IAPID Annual CME 2025 at Amrita Kochi
-            </h3>
-          </div>
-
-          {/* ================= CARD 2 ================= */}
-          <div className="text-center">
-
-            <img
-              src={img2}
-              alt="APCON IAPID 2025"
-              className="rounded-2xl shadow-xl w-full h-64 object-cover"
-            />
-
-            <h3 className="mt-4 text-xl font-semibold">
-              APCON - IAPID 2025
-            </h3>
-          </div>
-
-          {/* ================= CARD 3 ================= */}
-          <div className="text-center">
-
-            <img
-              src={img3}
-              alt="Annual Conference IAP-ID 2024"
-              className="rounded-2xl shadow-xl w-full h-64 object-cover"
-            />
-
-            <h3 className="mt-4 text-xl font-semibold">
-              Annual Conference of IAP-ID 2024
-            </h3>
-          </div>
-
-          {/* ================= CARD 4 ================= */}
-          <div className="text-center">
-
-            <img
-              src={img4}
-              alt="MYTP 2024"
-              className="rounded-2xl shadow-xl w-full h-64 object-cover"
-            />
-
-            <h3 className="mt-4 text-xl font-semibold">
-              MYTP - 2024
-            </h3>
-          </div>
+              {/* Title */}
+              <h3 className="mt-5 text-lg md:text-xl font-semibold text-black">
+                {item.title}
+              </h3>
+            </div>
+          ))}
 
         </div>
-
       </div>
     </section>
   );
 };
 
-// Exporting Gallery component
-// So we can use it in App.js or other pages
-export default Gallery;
+export default GalleryPage;

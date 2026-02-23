@@ -39,9 +39,9 @@ const Hero = () => {
           {/* 🔥 Main Heading */}
           <h1
             className="text-white
-                       text-3xl sm:text-4xl md:text-6xl lg:text-5xl
+                       text-4xl sm:text-4xl md:text-6xl lg:text-5xl
                        leading-[1.1]
-                       mb-6
+                       mb-3
                        font-[Georgia,'Times_New_Roman',serif]
                        font-bold"
           >
@@ -53,7 +53,7 @@ const Hero = () => {
           <h2
             className="text-black
                        text-xl sm:text-6xl md:text-4xl
-                       mb-6
+                       mb-3
                        font-[Georgia,'Times_New_Roman',serif]
                        font-semibold"
           >
@@ -63,7 +63,7 @@ const Hero = () => {
           {/* 🔹 Description */}
           <p
             className="text-white
-                       text-lg sm:text-5xl md:text-4xl
+                       text-lg sm:text-4xl md:text-4xl
                        mb-8
                        font-[Georgia,'Times_New_Roman',serif]"
           >

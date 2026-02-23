@@ -37,7 +37,7 @@ const AboutSection = () => {
 
           {/* ================= LEFT SIDE ================= */}
           <div>
-            <h2 className="text-5xl font-serif font-bold mb-8 text-black">
+            <h2 className="text-4xl font-serif font-bold mb-8 text-black">
               About IAP-ID
             </h2>
 
