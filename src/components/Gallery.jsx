@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
-// Gallery images (Ensure your paths are correct)
 import g1 from "../assets/gallery_1.jpg";
 import g2 from "../assets/gallery_2.jpg";
 import g3 from "../assets/gallery_3.jpg";
@@ -45,18 +44,19 @@ const Gallery = () => {
   };
 
   return (
-    <section className="bg-[#e5e7eb] py-10 overflow-hidden">
+    <section className="bg-[#dcdcdc] py-12 overflow-hidden">
       <div className="max-w-full mx-auto">
         
-        {/* Heading Section */}
-        <div className="px-10 mb-6">
-          <h2 className="text-3xl font-serif font-bold text-black">
+        {/* Heading */}
+        <div className="px-10 mb-8">
+          <h2 className="text-3xl md:text-4xl font-serif font-bold text-black">
             See our latest photos from Academic
           </h2>
         </div>
 
         <div className="relative group">
-          {/* Slider Container - Hidden Overflow */}
+          
+          {/* Slider Container */}
           <div className="overflow-hidden">
             <div
               className="flex transition-transform duration-500 ease-in-out"
@@ -73,7 +73,6 @@ const Gallery = () => {
                   <img
                     src={img}
                     alt={`gallery-${index}`}
-                    // h-[300px] height ko screenshot ke hisaab se set kiya hai
                     className="h-[320px] w-full object-cover border-r border-gray-300 shadow-sm"
                   />
                 </div>
@@ -81,7 +80,7 @@ const Gallery = () => {
             </div>
           </div>
 
-          {/* Navigation Buttons - Cyan Style as per screenshot */}
+          {/* Navigation Buttons */}
           <button
             onClick={prevSlide}
             className="absolute top-1/2 left-0 -translate-y-1/2 bg-[#87CEEB] hover:bg-cyan-400 text-black p-4 py-8 opacity-80 hover:opacity-100 transition-all"
@@ -95,6 +94,7 @@ const Gallery = () => {
           >
             <FaChevronRight size={24} />
           </button>
+
         </div>
       </div>
     </section>

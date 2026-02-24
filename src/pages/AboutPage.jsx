@@ -105,7 +105,7 @@ const AboutIAPID = () => {
       >
         <div className="absolute inset-0 bg-lightgrey/40"></div>
         <div className="relative z-10 text-center px-4">
-          <h1 className="text-3xl md:text-6xl font-bold tracking-tight">
+          <h1 className="text-2xl md:text-3xl font-bold tracking-tight">
             About IAP-ID
           </h1>
           <p className="text-base md:text-2xl mt-4 max-w-3xl mx-auto">

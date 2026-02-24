@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
-// Assuming these are your local assets
+// Images
 import img1 from "../assets/conf1.jpg";
 import img2 from "../assets/conf2.jpg";
 import img3 from "../assets/conf3.jpg";
@@ -18,63 +18,66 @@ const conferenceData = [
   { title: "APCON - IAPID 2025", images: [img7, img8, img9] },
 ];
 
-// ===============================
-// CARD COMPONENT
-// ===============================
+// ================= CARD COMPONENT =================
 
 const ConferenceCard = ({ title, images }) => {
   const [index, setIndex] = useState(0);
+  const [isAutoPlay, setIsAutoPlay] = useState(true);
+  const intervalRef = useRef(null);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
-    }, 3000);
-    return () => clearInterval(interval);
-  }, [images.length]);
+    if (isAutoPlay) {
+      intervalRef.current = setInterval(() => {
+        setIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+      }, 4000);
+    }
+    return () => clearInterval(intervalRef.current);
+  }, [isAutoPlay, images.length]);
 
-  const prevSlide = (e) => {
-    e.stopPropagation();
+  const prevSlide = () => {
+    setIsAutoPlay(false);
     setIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
   };
 
-  const nextSlide = (e) => {
-    e.stopPropagation();
+  const nextSlide = () => {
+    setIsAutoPlay(false);
     setIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-lg w-full max-w-[350px] mx-auto p-4 transition-transform duration-300 hover:scale-105">
-      {/* Header with Title */}
-      <div className="bg-[#4D4545] text-white text-center py-3 px-2 rounded-t-md mb-4 h-[60px] flex items-center justify-center">
+    <div className="bg-white rounded-lg shadow-sm w-full max-w-[340px] mx-auto p-4 transition duration-300">
+      
+      {/* Dark Header Title (Match Screenshot) */}
+      <div className="bg-[#4D4545] text-white text-center py-3 px-3 rounded-t-sm mb-4 min-h-[65px] flex items-center justify-center">
         <h3 className="text-sm md:text-base font-bold uppercase tracking-wide leading-tight">
           {title}
         </h3>
       </div>
 
-      {/* Image Slider Container */}
-      <div className="relative aspect-[4/5] w-full overflow-hidden border border-gray-100 shadow-inner">
+      {/* Slider Container */}
+      <div className="relative aspect-[4/5] w-full overflow-hidden bg-gray-100">
         {images.map((img, i) => (
           <img
             key={i}
             src={img}
             alt={`${title} slide ${i}`}
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
               i === index ? "opacity-100" : "opacity-0"
             }`}
           />
         ))}
 
-        {/* Navigation Arrows (Only visible on hover/desktop or always on mobile) */}
+        {/* Navigation Arrows (Clean Style) */}
         <button
           onClick={prevSlide}
-          className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/60 text-white p-2 rounded-full transition-colors"
+          className="absolute left-1 top-1/2 -translate-y-1/2 bg-black/10 hover:bg-black/40 text-white p-1 rounded-full transition"
         >
           <FaChevronLeft size={14} />
         </button>
 
         <button
           onClick={nextSlide}
-          className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/60 text-white p-2 rounded-full transition-colors"
+          className="absolute right-1 top-1/2 -translate-y-1/2 bg-black/10 hover:bg-black/40 text-white p-1 rounded-full transition"
         >
           <FaChevronRight size={14} />
         </button>
@@ -83,25 +86,23 @@ const ConferenceCard = ({ title, images }) => {
   );
 };
 
-// ===============================
-// MAIN SECTION
-// ===============================
+// ================= MAIN COMPONENT =================
 
 const AnnualConference = () => {
   return (
-    <section className="py-16 bg-[#F3F4F6] min-h-screen">
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-serif font-bold text-center text-[#333] mb-12 relative pb-4">
-          Annual Conference
-          <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-20 h-1 bg-[#4D4545]"></span>
-        </h2>
+    /* bg-[#E6E6E6] is the exact light grey from the screenshot background */
+    <section className="py-16 bg-[#E6E6E6] min-h-screen"> 
+      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+        
+        {/* Left Aligned Heading with Underline style */}
+        <div className="mb-14">
+          <h2 className="text-3xl md:text-4xl font-serif font-bold text-black inline-block relative border-b-[3px] border-black pb-1">
+            Annual Conference
+          </h2>
+        </div>
 
-        {/* Grid Layout:
-            - Mobile: 1 column (grid-cols-1)
-            - Tablet: 2 columns (sm:grid-cols-2)
-            - Desktop: 3 columns (lg:grid-cols-3)
-        */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-12 max-w-7xl mx-auto">
+        {/* Grid Layout */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
           {conferenceData.map((item, index) => (
             <ConferenceCard
               key={index}
