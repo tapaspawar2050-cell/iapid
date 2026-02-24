@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 // Images
 import img1 from "../assets/conf1.jpg";
@@ -18,99 +18,121 @@ const conferenceData = [
   { title: "APCON - IAPID 2025", images: [img7, img8, img9] },
 ];
 
-// ================= CARD COMPONENT =================
+const TOTAL_SLIDES = 3;
 
-const ConferenceCard = ({ title, images }) => {
-  const [index, setIndex] = useState(0);
-  const [isAutoPlay, setIsAutoPlay] = useState(true);
-  const intervalRef = useRef(null);
-
-  useEffect(() => {
-    if (isAutoPlay) {
-      intervalRef.current = setInterval(() => {
-        setIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
-      }, 4000);
-    }
-    return () => clearInterval(intervalRef.current);
-  }, [isAutoPlay, images.length]);
-
-  const prevSlide = () => {
-    setIsAutoPlay(false);
-    setIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
-  };
-
-  const nextSlide = () => {
-    setIsAutoPlay(false);
-    setIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
-  };
-
+const ConferenceCard = ({ title, images, activeIndex }) => {
   return (
-    <div className="bg-white rounded-lg shadow-sm w-full max-w-[340px] mx-auto p-4 transition duration-300">
-      
-      {/* Dark Header Title (Match Screenshot) */}
-      <div className="bg-[#4D4545] text-white text-center py-3 px-3 rounded-t-sm mb-4 min-h-[65px] flex items-center justify-center">
+    <div className="bg-white rounded-xl shadow-lg w-full max-w-[300px] mx-auto p-4">
+
+      {/* Header */}
+      <div className="bg-[#4D4545] text-white text-center py-3 px-3 rounded-md mb-4 min-h-[65px] flex items-center justify-center">
         <h3 className="text-sm md:text-base font-bold uppercase tracking-wide leading-tight">
           {title}
         </h3>
       </div>
 
-      {/* Slider Container */}
-      <div className="relative aspect-[4/5] w-full overflow-hidden bg-gray-100">
-        {images.map((img, i) => (
-          <img
-            key={i}
-            src={img}
-            alt={`${title} slide ${i}`}
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
-              i === index ? "opacity-100" : "opacity-0"
-            }`}
-          />
-        ))}
-
-        {/* Navigation Arrows (Clean Style) */}
-        <button
-          onClick={prevSlide}
-          className="absolute left-1 top-1/2 -translate-y-1/2 bg-black/10 hover:bg-black/40 text-white p-1 rounded-full transition"
+      {/* Image Slider */}
+      <div className="overflow-hidden relative rounded-lg h-[330px]">
+        <div
+          className="flex transition-transform duration-700 ease-in-out h-full"
+          style={{
+            transform: `translateX(-${activeIndex * 100}%)`,
+          }}
         >
-          <FaChevronLeft size={14} />
-        </button>
-
-        <button
-          onClick={nextSlide}
-          className="absolute right-1 top-1/2 -translate-y-1/2 bg-black/10 hover:bg-black/40 text-white p-1 rounded-full transition"
-        >
-          <FaChevronRight size={14} />
-        </button>
+          {images.map((img, i) => (
+            <div key={i} className="w-full h-full flex-shrink-0">
+              <img
+                src={img}
+                alt={`${title}-${i}`}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
 };
 
-// ================= MAIN COMPONENT =================
-
 const AnnualConference = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const intervalRef = useRef(null);
+
+  const nextSlide = () => {
+    setActiveIndex((prev) => (prev + 1) % TOTAL_SLIDES);
+  };
+
+  const prevSlide = () => {
+    setActiveIndex((prev) =>
+      prev === 0 ? TOTAL_SLIDES - 1 : prev - 1
+    );
+  };
+
+  // Auto Slide
+  useEffect(() => {
+    startAutoSlide();
+    return () => clearInterval(intervalRef.current);
+  }, []);
+
+  const startAutoSlide = () => {
+    intervalRef.current = setInterval(() => {
+      nextSlide();
+    }, 4000);
+  };
+
   return (
-    /* bg-[#E6E6E6] is the exact light grey from the screenshot background */
-    <section className="py-16 bg-[#E6E6E6] min-h-screen"> 
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        
-        {/* Left Aligned Heading with Underline style */}
-        <div className="mb-14">
-          <h2 className="text-3xl md:text-4xl font-serif font-bold text-black inline-block relative border-b-[3px] border-black pb-1">
+    <section className="py-14 bg-[#E6E6E6] relative group">
+      <div className="max-w-6xl mx-auto px-4 relative">
+
+        {/* Heading */}
+        <div className="mb-12 text-center lg:text-left">
+          <h2 className="text-2xl md:text-3xl font-serif font-bold text-black border-b-2 border-black inline-block pb-1">
             Annual Conference
           </h2>
         </div>
 
-        {/* Grid Layout */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
+        {/* Arrows - Visible Only On Hover */}
+        <button
+          onClick={prevSlide}
+          className="absolute left-0 top-1/2 -translate-y-1/2 bg-white p-3 rounded-full shadow-xl opacity-0 group-hover:opacity-100 transition duration-300 hover:bg-gray-200"
+        >
+          <ChevronLeft size={26} />
+        </button>
+
+        <button
+          onClick={nextSlide}
+          className="absolute right-0 top-1/2 -translate-y-1/2 bg-white p-3 rounded-full shadow-xl opacity-0 group-hover:opacity-100 transition duration-300 hover:bg-gray-200"
+        >
+          <ChevronRight size={26} />
+        </button>
+
+        {/* Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 justify-items-center">
           {conferenceData.map((item, index) => (
             <ConferenceCard
               key={index}
               title={item.title}
               images={item.images}
+              activeIndex={activeIndex}
             />
           ))}
         </div>
+
+        {/* Dot Indicators */}
+        <div className="flex justify-center mt-8 space-x-3">
+          {[...Array(TOTAL_SLIDES)].map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setActiveIndex(index)}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                activeIndex === index
+                  ? "bg-black scale-125"
+                  : "bg-gray-400"
+              }`}
+            />
+          ))}
+        </div>
+
       </div>
     </section>
   );
