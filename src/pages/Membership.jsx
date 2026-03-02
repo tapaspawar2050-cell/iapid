@@ -41,7 +41,7 @@ const Membership = () => {
 
   return (
     <section className="bg-white py-12 font-serif text-black min-h-screen">
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
+      <div className="max-w-6xl mx-auto px-6 md:px-12">
 
         {/* PAGE TITLE */}
         <h1 className="text-3xl border-b border-gray-300 pb-4 mb-8 uppercase tracking-wide">
@@ -59,8 +59,6 @@ const Membership = () => {
                     {item.sub}
                   </span>
                 )}
-
-                {/* Download Link */}
                 <a
                   href={item.file}
                   download
@@ -95,33 +93,64 @@ const Membership = () => {
           </div>
         </div>
 
-        {/* INFO SECTION */}
-        <div className="space-y-8 text-[15px] leading-relaxed italic text-gray-800">
-          <p>
+        {/* INFORMATION SECTION */}
+        <div className="space-y-10 text-[16px] leading-relaxed text-gray-800">
+
+          <p className="italic">
             *IAP-ID has started Associate Membership for postgraduate students in Pathology and others.
           </p>
 
-          <div className="pt-4">
+          {/* DD / Cheque Info */}
+          <div>
             <p>Please send the membership fee by Demand Draft / Cheque drawn in favour of</p>
-            <p className="font-bold not-italic">
+            <p className="font-bold">
               "SECRETARY & TREASURER, IAP- INDIAN DIVISION" payable at "Hyderabad".
             </p>
           </div>
 
-          <div className="space-y-4 pt-4">
-            <h3 className="text-[#a11d43] text-2xl font-bold not-italic">
+          {/* MAIL ADDRESS */}
+          <div>
+            <h3 className="text-[#a11d43] text-2xl font-bold mb-3">
               Mail the forms to:
             </h3>
-            <div className="not-italic text-gray-900 font-medium">
+
+            <div className="space-y-1">
               <p className="font-bold">Dr. Megha Uppin</p>
               <p>Secretary & Treasurer</p>
               <p>IAP - Indian Division</p>
               <p>Department of Pathology</p>
               <p>Nizam's Institute of Medical Sciences</p>
               <p>Punjagutta Hyderabad 500082</p>
-              <p>Email: <span className="text-blue-600">secretary.iapid25@gmail.com</span></p>
+              <p>
+                Email:{" "}
+                <span className="text-blue-600">
+                  secretary.iapid25@gmail.com
+                </span>
+              </p>
             </div>
           </div>
+
+          {/* ONLINE TRANSFER SECTION (NEW ADDED) */}
+          <div>
+            <h3 className="text-[#a11d43] text-2xl font-bold mb-4">
+              For Online Transfer of Membership Fee:
+            </h3>
+
+            <div className="space-y-2">
+              <p>Secretary Treasurer IAP- Indian Division</p>
+              <p>Dr Megha Uppin</p>
+              <p>Secretary and Treasurer</p>
+              <p>Account Number - 3632000100082636</p>
+              <p>For NEFT Transfer - MICR Code - 500024012</p>
+              <p>IFSC Code - PUNB0363200</p>
+              <p>
+                Membership by DD / Cheque drawn in favour of 
+                "Secretary & Treasurer, IAP- Indian Division". 
+                Payable at Hyderabad.
+              </p>
+            </div>
+          </div>
+
         </div>
 
       </div>

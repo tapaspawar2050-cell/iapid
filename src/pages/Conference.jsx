@@ -4,6 +4,13 @@ const ConferenceCME = () => {
 
   const eventData = [
     {
+      title: "Decoding Autoimmune Disorders",
+      subtitle:
+        "Unveiling Through Live Microscopy, Case-based Discussion & Immunodiagnostic Techniques.",
+      website: "https://iapidautoimmune.in",
+      isWebsiteOnly: true,
+    },
+    {
       title:
         "XXVIIth Annual CME of the International Academy of Pathology-Indian Division (IAP-ID)",
       subtitle:
@@ -41,7 +48,7 @@ const ConferenceCME = () => {
       <div className="max-w-6xl mx-auto px-6 md:px-12">
 
         {/* PAGE TITLE */}
-        <h1 className="text-3xl border-b border-[#a11d43] pb-4 mb-10 uppercase text-[#a11d43]">
+        <h1 className="text-3xl border-b border-[#a11d43] pb-4 mb-12 uppercase text-[#a11d43] tracking-wide">
           CONFERENCE / CME
         </h1>
 
@@ -49,17 +56,32 @@ const ConferenceCME = () => {
         <div className="space-y-14">
 
           {eventData.map((event, idx) => (
-            <div key={idx} className="space-y-2">
+            <div key={idx} className="space-y-3">
 
               {/* Event Title */}
-              <h2 className="text-lg font-bold leading-snug">
+              <h2 className="text-xl font-bold leading-snug">
                 {event.title}
               </h2>
 
               {/* Subtitle */}
-              <p className="text-[17px] text-gray-800">
+              <p className="text-[17px] text-gray-800 leading-relaxed">
                 {event.subtitle}
               </p>
+
+              {/* Website Link */}
+              {event.website && (
+                <p>
+                  Website:{" "}
+                  <a
+                    href={event.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:underline"
+                  >
+                    {event.website}
+                  </a>
+                </p>
+              )}
 
               {/* Location */}
               {event.location && (
@@ -68,14 +90,16 @@ const ConferenceCME = () => {
                 </p>
               )}
 
-              {/* Download Link */}
-              <a
-                href={event.file}
-                download
-                className="text-[#a11d43] font-bold text-lg hover:underline"
-              >
-                Download Brochure
-              </a>
+              {/* Download Brochure */}
+              {!event.isWebsiteOnly && (
+                <a
+                  href={event.file}
+                  download
+                  className="text-[#a11d43] font-bold text-lg hover:underline"
+                >
+                  Download Brochure
+                </a>
+              )}
 
             </div>
           ))}

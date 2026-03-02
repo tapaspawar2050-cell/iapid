@@ -22,28 +22,33 @@ const TOTAL_SLIDES = 3;
 
 const ConferenceCard = ({ title, images, activeIndex }) => {
   return (
-    <div className="bg-white rounded-xl shadow-lg w-full max-w-[300px] mx-auto p-4">
+    <div className="bg-white rounded-xl shadow-lg w-full max-w-[320px] mx-auto p-4">
 
       {/* Header */}
-      <div className="bg-[#4D4545] text-white text-center py-3 px-3 rounded-md mb-4 min-h-[65px] flex items-center justify-center">
-        <h3 className="text-sm md:text-base font-bold uppercase tracking-wide leading-tight">
+      <div className="bg-[#4D4545] text-white text-center py-3 rounded-md mb-4 min-h-[65px] flex items-center justify-center">
+        <h3 className="text-sm md:text-base font-bold uppercase tracking-wide">
           {title}
         </h3>
       </div>
 
       {/* Image Slider */}
-      <div className="overflow-hidden relative rounded-lg h-[330px]">
+      <div className="overflow-hidden rounded-lg h-[330px]">
         <div
-          className="flex transition-transform duration-700 ease-in-out h-full"
+          className="flex h-full transition-transform duration-700 ease-in-out"
           style={{
-            transform: `translateX(-${activeIndex * 100}%)`,
+            width: `${images.length * 100}%`,
+            transform: `translateX(-${activeIndex * (100 / images.length)}%)`,
           }}
         >
           {images.map((img, i) => (
-            <div key={i} className="w-full h-full flex-shrink-0">
+            <div
+              key={i}
+              style={{ width: `${100 / images.length}%` }}
+              className="h-full flex-shrink-0"
+            >
               <img
                 src={img}
-                alt={`${title}-${i}`}
+                alt=""
                 className="w-full h-full object-cover"
               />
             </div>
@@ -58,56 +63,63 @@ const AnnualConference = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const intervalRef = useRef(null);
 
+  const startAutoSlide = () => {
+    intervalRef.current = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % TOTAL_SLIDES);
+    }, 5000); // ✅ 5 seconds
+  };
+
+  const resetAutoSlide = () => {
+    clearInterval(intervalRef.current);
+    startAutoSlide();
+  };
+
   const nextSlide = () => {
     setActiveIndex((prev) => (prev + 1) % TOTAL_SLIDES);
+    resetAutoSlide();
   };
 
   const prevSlide = () => {
     setActiveIndex((prev) =>
       prev === 0 ? TOTAL_SLIDES - 1 : prev - 1
     );
+    resetAutoSlide();
   };
 
-  // Auto Slide
   useEffect(() => {
     startAutoSlide();
     return () => clearInterval(intervalRef.current);
   }, []);
 
-  const startAutoSlide = () => {
-    intervalRef.current = setInterval(() => {
-      nextSlide();
-    }, 4000);
-  };
-
   return (
-    <section className="py-14 bg-[#E6E6E6] relative group">
+    <section className="py-14 bg-[#E6E6E6] relative group overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 relative">
 
         {/* Heading */}
         <div className="mb-12 text-center lg:text-left">
-          <h2 className="text-2xl md:text-3xl font-serif font-bold text-black border-b-2 border-black inline-block pb-1">
+          <h2 className="text-2xl md:text-3xl font-serif font-bold border-b-2 border-black inline-block">
             Annual Conference
           </h2>
         </div>
 
-        {/* Arrows - Visible Only On Hover */}
+        {/* Left Arrow */}
         <button
           onClick={prevSlide}
-          className="absolute left-0 top-1/2 -translate-y-1/2 bg-white p-3 rounded-full shadow-xl opacity-0 group-hover:opacity-100 transition duration-300 hover:bg-gray-200"
+          className="absolute left-2 top-1/2 -translate-y-1/2 bg-white p-3 rounded-full shadow-xl opacity-0 group-hover:opacity-100 transition duration-300 hover:bg-gray-200 z-10"
         >
           <ChevronLeft size={26} />
         </button>
 
+        {/* Right Arrow */}
         <button
           onClick={nextSlide}
-          className="absolute right-0 top-1/2 -translate-y-1/2 bg-white p-3 rounded-full shadow-xl opacity-0 group-hover:opacity-100 transition duration-300 hover:bg-gray-200"
+          className="absolute right-2 top-1/2 -translate-y-1/2 bg-white p-3 rounded-full shadow-xl opacity-0 group-hover:opacity-100 transition duration-300 hover:bg-gray-200 z-10"
         >
           <ChevronRight size={26} />
         </button>
 
-        {/* Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 justify-items-center">
+        {/* Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {conferenceData.map((item, index) => (
             <ConferenceCard
               key={index}
@@ -118,12 +130,15 @@ const AnnualConference = () => {
           ))}
         </div>
 
-        {/* Dot Indicators */}
+        {/* Dots */}
         <div className="flex justify-center mt-8 space-x-3">
           {[...Array(TOTAL_SLIDES)].map((_, index) => (
             <button
               key={index}
-              onClick={() => setActiveIndex(index)}
+              onClick={() => {
+                setActiveIndex(index);
+                resetAutoSlide();
+              }}
               className={`w-3 h-3 rounded-full transition-all duration-300 ${
                 activeIndex === index
                   ? "bg-black scale-125"

@@ -83,16 +83,16 @@ const Gallery = () => {
           {/* Navigation Buttons */}
           <button
             onClick={prevSlide}
-            className="absolute top-1/2 left-0 -translate-y-1/2 bg-[#87CEEB] hover:bg-cyan-400 text-black p-4 py-8 opacity-80 hover:opacity-100 transition-all"
+            className="absolute top-1/2 left-2 -translate-y-1/2 bg-[#87CEEB] hover:bg-cyan-400 text-black p-2 rounded-md opacity-80 hover:opacity-100 transition-all"
           >
-            <FaChevronLeft size={24} />
+            <FaChevronLeft size={16} />
           </button>
 
           <button
             onClick={nextSlide}
-            className="absolute top-1/2 right-0 -translate-y-1/2 bg-[#87CEEB] hover:bg-cyan-400 text-black p-4 py-8 opacity-80 hover:opacity-100 transition-all"
+            className="absolute top-1/2 right-2 -translate-y-1/2 bg-[#87CEEB] hover:bg-cyan-400 text-black p-2 rounded-md opacity-80 hover:opacity-100 transition-all"
           >
-            <FaChevronRight size={24} />
+            <FaChevronRight size={16} />
           </button>
 
         </div>

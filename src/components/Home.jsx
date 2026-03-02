@@ -12,6 +12,8 @@ import AcademicPrograms from "../components/AcademicPrograms";
 // Annual Conference section (shows conference details)
 import AnnualConference from "../components/AnnualConference";
 
+import LatestNews from "./LatestNews";
+
 
 // This is our Home component
 // A component is like a small part of a website
